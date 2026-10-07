@@ -971,3 +971,19 @@ h1.page-title::after { content: ''; display: block; margin-top: 16px; }
 .hz-depts .hz-tag { background: var(--bg); border: 1px solid var(--border-dash); padding: 8px 14px; border-radius: 20px; font-size: 12px; }
 .hz-field .btn:disabled { opacity: .55; cursor: not-allowed; }
 @media (max-width: 1024px) { .snav .nav-link { padding: 11px 24px; } }
+
+/* Mobil (≤1024px): logo i tlačítko Menu na střed, položky rozbaleného menu také */
+@media (max-width: 1024px) {
+  .sbar .brand { justify-content: center; }
+  .snav { justify-content: center; }
+  .snav .main-nav .nav-link { text-align: center; justify-content: center; }
+  .snav .dropdown-menu, .snav .dropdown-menu.dropdown-right { padding: 0 0 6px; text-align: center; }
+  .snav .dropdown-menu a, .snav .dropdown-menu .dd-soon { text-align: center; }
+  .snav .nav-link.active { box-shadow: inset 0 -3px 0 var(--accent); }
+}
+
+/* Rozbalovací nabídky menu — text položek na střed (i na počítači) */
+.snav .dropdown-menu a, .snav .dropdown-menu .dd-soon { text-align: center; }
+@media (min-width: 1025px) {
+  .snav .dropdown-menu a, .snav .dropdown-menu .dd-soon { white-space: nowrap; padding-left: 28px; padding-right: 28px; }
+}
