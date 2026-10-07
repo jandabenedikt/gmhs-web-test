@@ -1050,3 +1050,10 @@ h1.page-title::after { content: ''; display: block; margin-top: 16px; }
   .snav .main-nav .nav-link { padding: 14px 24px; }
   .snav .dropdown-menu, .snav .dropdown-menu.dropdown-right { padding: 0 0 10px; }
 }
+
+/* Počítač: oddíl s logem uprostřed lišty — Žijeme hudbou! | logo | Stránky školy */
+@media (min-width: 1025px) {
+  .sbar > .stab:first-of-type { order: 1; }
+  .sbar > .brand { order: 2; }
+  .sbar > .stab:last-of-type { order: 3; }
+}
