@@ -1103,6 +1103,228 @@ body.sec-skola { --accent-light: #ead79a; }
 /* Cormorant Garamond je i v nejtučnějším řezu světlejší než náhled — jemné zesílení tahu */
 .stab.on, .sbar .brand-title, .sbar .brand-sub { -webkit-text-stroke: 0.03em currentColor; }
 .stab:not(.on) { -webkit-text-stroke: 0.012em currentColor; }
-/* Text u loga a „Stránky školy“ bez ztučnění (8. 10.) */
+/* Text u loga a položka druhé (neaktivní) sekce bez ztučnění — v obou sekcích stejně (8. 10.) */
 .sbar .brand-title, .sbar .brand-sub,
-.sbar > .stab:last-of-type, .sbar > .stab.on:last-of-type { font-weight: 500; -webkit-text-stroke: 0; }
+.sbar > .stab:not(.on) { font-weight: 500; -webkit-text-stroke: 0; }
+
+/* ==========================================================================
+   LOGO UPROSTŘED MENU (8. 10.)
+   Menu je rozdělené na dvě poloviny (.nav-half), mezi nimi mezera .nav-logo.
+   Logo je obrysová verze (images/logo-obrys.png) obarvená barvou oddílu
+   s názvem školy (--bar-dark), bez výplně; přesahuje přes menu i obsah pod ním.
+   V liště zůstal jen název školy přes celou šířku oddílu.
+   ========================================================================== */
+.sbar .brand { padding: 6px 32px; }
+.sbar .brand-text { display: block; width: 100%; line-height: 1.15; }
+.sbar .brand-title, .sbar .brand-sub {
+  display: block;
+  font-size: 23px;
+  letter-spacing: 0.06em;
+  text-align: justify;
+  text-align-last: justify;
+}
+
+.nav-logo { display: block; position: relative; flex: 0 0 150px; pointer-events: none; }
+.nav-logo::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 72px;
+  height: 140px;
+  transform: translateX(-50%);
+  background: var(--bar-dark);
+  -webkit-mask: url(images/logo-obrys.png) center top / contain no-repeat;
+  mask: url(images/logo-obrys.png) center top / contain no-repeat;
+  z-index: 40;
+}
+
+@media (min-width: 1025px) {
+  .snav .main-nav { justify-content: center; }
+  .snav .main-nav > .nav-half { flex: 1 1 0; min-width: 0; display: flex; justify-content: stretch; position: static; }
+  .snav .main-nav > .nav-logo { flex: 0 0 150px; display: block; }
+  .snav .main-nav > * + *::before { display: none; }
+  .snav .nav-half > * { flex: 1 1 auto; position: relative; display: flex; justify-content: center; }
+  .snav .nav-half > * + *::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 20px;
+    transform: translateY(-50%);
+    background: var(--border-dash);
+  }
+}
+
+@media (max-width: 1024px) {
+  .sbar .brand { padding: 8px 24px; }
+  .sbar .brand-title, .sbar .brand-sub { font-size: 19px; }
+  .snav .main-nav > .nav-half { display: contents; }
+  .snav .main-nav > .nav-logo { display: none; }
+  .snav .nav-half > * { position: relative; }
+  .snav .nav-half > * + *::before,
+  .snav .nav-logo + .nav-half > :first-child::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 64px;
+    height: 1px;
+    transform: translateX(-50%);
+    background: var(--border-dash);
+  }
+  /* na mobilu visí logo z řádku s tlačítkem Menu u levého okraje */
+  .site-header::after {
+    content: '';
+    position: absolute;
+    left: 18px;
+    bottom: -40px;
+    width: 42px;
+    height: 82px;
+    background: var(--bar-dark);
+    -webkit-mask: url(images/logo-obrys.png) center top / contain no-repeat;
+    mask: url(images/logo-obrys.png) center top / contain no-repeat;
+    pointer-events: none;
+    z-index: 40;
+  }
+}
+/* Název školy v liště: na počítači jeden řádek přes celou šířku oddílu
+   (velikost se počítá ze šířky okna, aby text oddíl vždy vyplnil) */
+@media (min-width: 1025px) {
+  .sbar .brand { padding: 4px 28px; }
+  .sbar .brand-text { text-align: justify; text-align-last: justify; white-space: nowrap; }
+  .sbar .brand-title, .sbar .brand-sub {
+    display: inline;
+    font-size: min(calc(1.66vw - 2.8px), 30px);
+    letter-spacing: 0;
+  }
+  .sbar .brand-title::after { content: ' '; }
+}
+/* Mobil: dva řádky, druhý prostrkaný tak, aby měl stejnou šířku jako první */
+@media (max-width: 1024px) {
+  .sbar .brand-title, .sbar .brand-sub { font-size: min(calc(8.7vw - 4.2px), 26px); letter-spacing: 0; }
+  .sbar .brand-sub { letter-spacing: 0.15em; }
+  .site-header::after { left: auto; right: 18px; }
+}
+
+/* Upřesnění 8. 10. (2):
+   — logo uprostřed menu je plné (bez obrysové verze), v barvě oddílu s názvem školy,
+     a vyjíždí přímo ze spodního okraje prostředního oddílu lišty;
+   — název školy je ve svém oddílu na střed;
+   — na mobilu původní podoba: malé logo vedle názvu školy, žádné visící logo. */
+.nav-logo::after {
+  top: 0;
+  -webkit-mask: url(images/logo.png) center top / contain no-repeat;
+  mask: url(images/logo.png) center top / contain no-repeat;
+}
+.sbar .brand-logo { display: none; }
+
+@media (min-width: 1025px) {
+  .sbar .brand { justify-content: center; }
+  .sbar .brand-text { text-align: center; text-align-last: center; width: auto; }
+  .sbar .brand-title, .sbar .brand-sub { text-align: center; text-align-last: center; }
+}
+
+@media (max-width: 1024px) {
+  .site-header::after { display: none; content: none; }
+  .sbar .brand { justify-content: center; gap: 12px; padding: 8px 20px; }
+  .sbar .brand-logo { display: block; height: 36px; width: auto; filter: brightness(0) invert(1); }
+  .sbar .brand-text { width: auto; text-align: left; line-height: 1.45; }
+  .sbar .brand-title, .sbar .brand-sub {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-align: left;
+    text-align-last: auto;
+  }
+}
+/* mezera s logem přes celou výšku pruhu menu, aby logo začínalo přesně na hraně lišty */
+.snav .main-nav > .nav-logo { align-self: stretch; }
+.nav-logo::after { top: -1px; }
+
+/* Logo uprostřed menu o čtvrtinu menší; pod ním světlý okraj v barvě základního
+   pozadí stránky — na světlém podkladu splyne, přes tmavý (hero) logo obtáhne. */
+.nav-logo::after { width: 54px; height: 109px; }
+.snav .main-nav > .nav-logo::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  width: 58.3px;
+  height: 111.2px;
+  transform: translateX(-50%);
+  background: var(--bg);
+  -webkit-mask: url(images/logo-okraj.png) center top / contain no-repeat;
+  mask: url(images/logo-okraj.png) center top / contain no-repeat;
+  z-index: 39;
+  display: block !important;
+}
+
+/* „Tčko“ (8. 10.): prostřední oddíl lišty vybíhá v místě loga výběžkem dolů
+   přes pruh menu i obsah; logo je ve výběžku v barvě základního pozadí. */
+.snav .main-nav > .nav-logo::before {
+  top: -1px;
+  width: 86px;
+  height: 132px;
+  background: var(--bar-dark);
+  -webkit-mask: none;
+  mask: none;
+  border-radius: 0 0 2px 2px;
+}
+.nav-logo::after {
+  top: 11px;
+  background: var(--bg);
+}
+/* Logo v „Tčku“: horní hrana na úrovni řádku s názvem školy (účaří textu),
+   spodní hrana na spodní hraně výběžku. Účaří se posouvá s velikostí písma
+   názvu (ta se počítá ze šířky okna), proto výpočet přes vw. */
+@media (min-width: 1025px) {
+  .nav-logo::after {
+    top: calc(0.515vw - 30.9px);
+    height: calc(161.9px - 0.515vw);
+    width: calc((161.9px - 0.515vw) * 0.4975);
+  }
+}
+@media (min-width: 1980px) {
+  .nav-logo::after { top: -20.7px; height: 151.7px; width: 75.5px; }
+}
+/* Logo v „Tčku“ zmenšené na polovinu, odsazené 8 px od textu názvu;
+   výběžek končí 8 px pod spodní hranou loga (8. 10.). */
+@media (min-width: 1025px) {
+  .nav-logo::after {
+    top: calc(0.515vw - 22.9px);
+    height: calc(80.95px - 0.2575vw);
+    width: calc((80.95px - 0.2575vw) * 0.4975);
+  }
+  .snav .main-nav > .nav-logo::before { height: calc(0.2575vw + 67.05px); }
+}
+@media (min-width: 1980px) {
+  .nav-logo::after { top: -12.7px; height: 75.85px; width: 37.7px; }
+  .snav .main-nav > .nav-logo::before { height: 72.15px; }
+}
+/* Tčko: stejná mezera 14 px mezi logem a textem názvu, oběma boky
+   výběžku i jeho spodní hranou (8. 10.). */
+@media (min-width: 1025px) {
+  .nav-logo::after { top: calc(0.515vw - 16.9px); }
+  .snav .main-nav > .nav-logo::before {
+    width: calc((80.95px - 0.2575vw) * 0.4975 + 28px);
+    height: calc(0.2575vw + 79.05px);
+  }
+}
+@media (min-width: 1980px) {
+  .nav-logo::after { top: -6.7px; }
+  .snav .main-nav > .nav-logo::before { width: 65.7px; height: 84.15px; }
+}
+/* Tčko: levý okraj loga tvoří jen tenké linky (houslový luk, trubka), proto
+   opticky působil větší mezerou — levý bok výběžku posunut o 5 px blíž k logu. */
+@media (min-width: 1025px) {
+  .snav .main-nav > .nav-logo::before {
+    width: calc((80.95px - 0.2575vw) * 0.4975 + 23px);
+    transform: translateX(calc(-50% + 2.5px));
+  }
+}
+@media (min-width: 1980px) {
+  .snav .main-nav > .nav-logo::before { width: 60.7px; }
+}

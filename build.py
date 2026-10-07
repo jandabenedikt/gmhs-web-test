@@ -66,7 +66,7 @@ WEB = "https://gmhs.cz/"
 # Verze stylopisu pro všechny stránky („style.css?v=…“). Po změně style.css ji
 # zvýšit, aby prohlížeče návštěvníků nepoužily starou verzi z mezipaměti.
 # Prázdné = bez verze. Jednotlivá stránka ji může přebít údajem „verze_stylu“.
-VERZE_STYLU = "2026-10-08"
+VERZE_STYLU = "2026-10-08-10"
 
 # Položka menu: (popisek, odkaz, podnabídka nebo None).
 # V podnabídce: (odkaz, popisek); odkaz None = neaktivní šedý text (připravuje se).
@@ -77,6 +77,7 @@ MENU = {
         ("Koncerty", "hudebni-zivot/index.html#program", None),
         ("Soutěže", "hudebni-zivot/poradane-souteze.html", None),
         ("Soubory a orchestry", "hudebni-zivot/orchestry-a-soubory.html", None),
+        ("Mezinárodní angažmá", "hudebni-zivot/projekty-eu.html", None),
         ("Galerie", "galerie.html", None),
     ],
     # Stránky školy — zatím s rozbalovacími nabídkami
@@ -149,7 +150,14 @@ def _externi(href):
 def menu_html(koren, cesta, sekce):
     label = "Žijeme hudbou!" if sekce == "hudba" else "Stránky školy"
     parts = [f'      <nav class="main-nav" aria-label="Menu – {label}">']
-    for popisek, odkaz, podnabidka in MENU[sekce]:
+    polovina = (len(MENU[sekce]) + 1) // 2
+    parts.append('        <div class="nav-half">')
+    for poradi, (popisek, odkaz, podnabidka) in enumerate(MENU[sekce]):
+        if poradi == polovina:
+            # mezera uprostřed menu s logem školy (logo je jen ozdoba, kreslí ho style.css)
+            parts.append('        </div>')
+            parts.append('        <span class="nav-logo" aria-hidden="true"></span>')
+            parts.append('        <div class="nav-half">')
         aktivni = (odkaz is not None and "#" not in odkaz and odkaz == cesta) or \
                   bool(podnabidka and any(p == cesta for p, _ in podnabidka))
         akt = " active" if aktivni else ""
@@ -174,6 +182,7 @@ def menu_html(koren, cesta, sekce):
         else:
             cur = ' aria-current="page"' if aktivni else ""
             parts.append(f'        <a class="nav-link{akt}" href="{koren}{odkaz}"{cur}>{popisek}</a>')
+    parts.append('        </div>')
     parts.append('      </nav>')
     return "\n".join(parts)
 
