@@ -1,0 +1,50 @@
+/* ==========================================================================
+   GMHS — styly stránky Kalendář akcí (kalendar-akci.html)
+   Samostatný soubor, načítá se jen na této stránce (za style.css).
+   Akce vykresluje kalendar.js z data/akce.json.
+   ========================================================================== */
+
+/* ---------- Kalendář akcí (oddíly po měsících, vykresluje kalendar.js) ---------- */
+.cal-months { padding: 8px 0 100px; }
+.cal-month { padding: 40px 64px 8px; border-top: 1px solid var(--border); margin-top: 16px; }
+.cal-month.first { border-top: none; margin-top: 0; }
+.cal-month-title { margin: 0 0 20px; font-size: 28px; font-weight: 600; color: var(--accent); }
+.cal-list { max-width: 1100px; display: flex; flex-direction: column; gap: 12px; }
+.cal-event {
+  display: grid; grid-template-columns: 120px 1fr; gap: 24px;
+  background: var(--card-bg); padding: 20px 24px; border-left: 3px solid var(--accent);
+}
+.cal-date { display: flex; flex-direction: column; gap: 4px; }
+.cal-day { font-size: 30px; font-weight: 600; line-height: 1; color: var(--accent); }
+.cal-weekday { font-size: 12px; color: var(--text-muted-2); text-transform: uppercase; letter-spacing: 0.05em; }
+.cal-title { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.4; color: var(--text); }
+.cal-title a { color: inherit; }
+.cal-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 6px; font-size: 14px; color: var(--text-muted-2); }
+.cal-time { font-weight: 600; color: var(--accent); }
+.cal-desc { margin: 10px 0 0; font-size: 14.5px; line-height: 1.7; color: var(--text-body); }
+.cal-empty { max-width: 1100px; margin: 0; padding: 18px 0; font-size: 15px; color: var(--text-pending); font-style: italic; }
+.cal-months > .cal-empty { padding: 40px 64px; }
+.cal-past-label {
+  display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; background: var(--bg-alt); color: var(--text-faint-2); padding: 4px 9px; border-radius: 2px;
+}
+.cal-event.is-past { background: transparent; border-left-color: var(--border-2); }
+/* Akce z plakátu školy (data/akce-plakat.json) — tmavší pozadí karty, i u proběhlých */
+.cal-event.is-plakat { background: var(--bg-alt); }
+.cal-event.is-past .cal-day,
+.cal-event.is-past .cal-time,
+.cal-event.is-past .cal-title,
+.cal-event.is-past .cal-meta,
+.cal-event.is-past .cal-desc { color: var(--text-pending); }
+
+/* ---------- Mobil a tablet (≤1024px): datum nad názvem akce ---------- */
+@media (max-width: 1024px) {
+  .cal-event { grid-template-columns: 1fr; gap: 10px; padding: 16px 18px; }
+  .cal-date { flex-direction: row; align-items: baseline; gap: 10px; }
+  .cal-day { font-size: 24px; }
+}
+/* Kalendář akcí — užší boční okraje od stejné šířky jako hlavička stránky (.page-header, ≤960px) */
+@media (max-width: 960px) {
+  .cal-month { padding: 32px 24px 8px; }
+  .cal-months > .cal-empty { padding: 32px 24px; }
+}
