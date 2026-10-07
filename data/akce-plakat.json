@@ -1,0 +1,284 @@
+{
+ "zdroj": "Plakát akcí GMHS 2026–2027 (ručně přepsáno z PDF). Akce odsud mají na stránce tmavší pozadí.",
+ "events": [
+  {
+   "title": "XXIV. ročník Písňové soutěže Bohuslava Martinů",
+   "allDay": true,
+   "start": "2026-10-16",
+   "end": "2026-10-18",
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Slavnostní koncert ke 100. výročí narození pedagožky Zdeny Janžurové",
+   "allDay": false,
+   "start": "2026-11-05T18:00",
+   "end": null,
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Koncert vítězů – Mladí pianisté hrají na klavír Steinway & Sons",
+   "allDay": false,
+   "start": "2026-11-07T11:00",
+   "end": null,
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Masterclass Ivan Klánský",
+   "allDay": false,
+   "start": "2026-11-07T14:00",
+   "end": null,
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Beseda s H. Blažíkovou, T. Jamníkem, D. Weiss Hoškovou",
+   "allDay": false,
+   "start": "2026-11-11T18:00",
+   "end": null,
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Workshopy zpěv, violoncello – H. Blažíková, T. Jamník",
+   "allDay": false,
+   "start": "2026-11-12T09:30",
+   "end": "2026-11-12T13:30",
+   "location": "Koncertní sál GMHS, Komorní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "30 let spolu – koncert k výročí GMHS na Komenského náměstí",
+   "allDay": false,
+   "start": "2026-11-13T19:00",
+   "end": null,
+   "location": "Kostel sv. Šimona a Judy",
+   "description": "Symfonický orchestr GMHS, violoncello Tomáš Jamník",
+   "url": ""
+  },
+  {
+   "title": "XX. ročník Mezinárodní violoncellové soutěže Jana Vychytila",
+   "allDay": true,
+   "start": "2026-11-13",
+   "end": "2026-11-17",
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Koncert vítězů Písňové soutěže B. Martinů",
+   "allDay": false,
+   "start": "2026-11-23T19:00",
+   "end": null,
+   "location": "Sál Martinů",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Koncert – Symfonický orchestr GMHS a Konzervatoř J. Fuxe Graz",
+   "allDay": false,
+   "start": "2026-11-24T19:00",
+   "end": null,
+   "location": "Kostel Církve československé husitské, Wuchterlova 5, Praha 6",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Den otevřených dveří",
+   "allDay": false,
+   "start": "2026-11-26T15:30",
+   "end": null,
+   "location": "GMHS",
+   "description": "15:30 prohlídka školy, praktická ukázka výuky\n17:00 setkání s vedením školy v Koncertním sále",
+   "url": ""
+  },
+  {
+   "title": "Koncert Praha – Linec – Bolzano",
+   "allDay": false,
+   "start": "2026-12-09T19:00",
+   "end": null,
+   "location": "Kostel Církve československé husitské, Wuchterlova 5, Praha 6",
+   "description": "Lux Iuvenes Praga, Coro carissimi Linz, Kunstgymnasium Bozen",
+   "url": ""
+  },
+  {
+   "title": "Koncert – Symfonický orchestr GMHS",
+   "allDay": false,
+   "start": "2026-12-10T19:00",
+   "end": null,
+   "location": "Sušice",
+   "description": "Dirigent Petr Jiříkovský",
+   "url": ""
+  },
+  {
+   "title": "Vánoční koncert GMHS",
+   "allDay": false,
+   "start": "2026-12-16T19:00",
+   "end": null,
+   "location": "Kostel Církve československé husitské, Wuchterlova 5, Praha 6",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Maturitní ples",
+   "allDay": false,
+   "start": "2026-12-17T19:00",
+   "end": null,
+   "location": "Národní dům na Vinohradech",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Den otevřených dveří",
+   "allDay": false,
+   "start": "2027-01-21T15:30",
+   "end": null,
+   "location": "Koncertní sál GMHS",
+   "description": "15:30 prohlídka školy, praktická ukázka výuky\n17:00 setkání s vedením školy v Koncertním sále",
+   "url": ""
+  },
+  {
+   "title": "Konkurz o FOKUS",
+   "allDay": false,
+   "start": "2027-02-16T09:00",
+   "end": "2027-02-16T17:00",
+   "location": "Koncertní sál GMHS",
+   "description": "Koncert v Obecním domě",
+   "url": ""
+  },
+  {
+   "title": "Slavnostní koncert klavírního oddělení",
+   "allDay": false,
+   "start": "2027-02-17T19:00",
+   "end": null,
+   "location": "Pálffyho palác",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "XV. ročník Mezinárodní houslové soutěže PhDr. Josefa Micky",
+   "allDay": true,
+   "start": "2027-03-12",
+   "end": "2027-03-14",
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Koncert Mladé talenty Josefu Sukovi",
+   "allDay": false,
+   "start": "2027-03-14T17:00",
+   "end": null,
+   "location": "zámek Průhonice",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "XVIII. ročník PRAGuitarra Clásica",
+   "allDay": true,
+   "start": "2027-03-19",
+   "end": "2027-03-21",
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Slavnostní koncert pěveckého oddělení",
+   "allDay": false,
+   "start": "2027-03-23T19:00",
+   "end": null,
+   "location": "Modlitebna ČCE, Korunní ulice",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Soutěž ZUŠ MŠMT Smyčce – krajské kolo",
+   "allDay": true,
+   "start": "2027-04-02",
+   "end": "2027-04-04",
+   "location": "Koncertní sál GMHS, Komorní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Slavnostní koncert dechového oddělení",
+   "allDay": false,
+   "start": "2027-04-14T19:00",
+   "end": null,
+   "location": "Refektář opatství v Emauzích",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Koncert – Symfonický orchestr GMHS",
+   "allDay": true,
+   "start": "2027-04-24",
+   "end": "2027-04-27",
+   "location": "Graz",
+   "description": "Dirigent Petr Jiříkovský",
+   "url": ""
+  },
+  {
+   "title": "FOKUS – Koncert sólistů GMHS se Symfonickým orchestrem hl. m. Prahy FOK",
+   "allDay": false,
+   "start": "2027-04-29T19:30",
+   "end": null,
+   "location": "Obecní dům, Smetanova síň",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Maturitní koncert",
+   "allDay": false,
+   "start": "2027-05-10T09:00",
+   "end": "2027-05-10T16:30",
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "XV. ročník klavírní soutěže Mladí pianisté hrají na klavír Steinway & Sons",
+   "allDay": true,
+   "start": "2027-05-14",
+   "end": "2027-05-16",
+   "location": "Koncertní sál GMHS",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Slavnostní koncert smyčcového oddělení",
+   "allDay": false,
+   "start": "2027-05-26T19:00",
+   "end": null,
+   "location": "Libeňský zámeček",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "XIII. ročník celostátní přehlídky harfové mládeže PRAH-A-HARP FESTIVAL",
+   "allDay": true,
+   "start": "2027-06-04",
+   "end": "2027-06-06",
+   "location": "Koncertní sál GMHS a jiné",
+   "description": "",
+   "url": ""
+  },
+  {
+   "title": "Slavnostní koncert GMHS",
+   "allDay": false,
+   "start": "2027-06-16T19:00",
+   "end": null,
+   "location": "Betlémská kaple",
+   "description": "",
+   "url": ""
+  }
+ ]
+}
