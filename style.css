@@ -1007,3 +1007,46 @@ h1.page-title::after { content: ''; display: block; margin-top: 16px; }
   .snav .nav-toggle { height: 40px; }
   .snav .nav-link { font-size: 16px; padding: 10px 24px; }
 }
+
+/* Svislé rozdělovače mezi položkami menu (jen počítač).
+   Každá položka dostane stejný přídavek místa, takže mezery mezi texty jsou
+   stejné a rozdělovač leží přesně uprostřed mezery. */
+@media (min-width: 1025px) {
+  .snav .main-nav { gap: 0; justify-content: stretch; }
+  .snav .main-nav > * { flex: 1 1 auto; position: relative; display: flex; justify-content: center; }
+  .snav .main-nav > * + *::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 20px;
+    transform: translateY(-50%);
+    background: var(--border-dash);
+  }
+  .snav .main-nav > .nav-item > .nav-link { width: auto; }
+  /* aktivní položka: podtržení jen pod textem, ne přes celou buňku */
+  .snav .nav-link.active { border-bottom-color: transparent; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+}
+
+/* Mobil: vodorovné rozdělovače mezi položkami rozbaleného menu
+   (krátká linka na středu — obdoba svislých rozdělovačů na počítači) */
+@media (max-width: 1024px) {
+  .snav .main-nav > * { position: relative; }
+  .snav .main-nav > * + *::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 64px;
+    height: 1px;
+    transform: translateX(-50%);
+    background: var(--border-dash);
+  }
+}
+@media (max-width: 1024px) {
+  /* stejné mezery: bez mezery mezi položkami, linka leží přesně na hranici dvou položek */
+  .snav .main-nav { gap: 0; }
+  .snav .main-nav .nav-link { padding: 14px 24px; }
+  .snav .dropdown-menu, .snav .dropdown-menu.dropdown-right { padding: 0 0 10px; }
+}
