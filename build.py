@@ -66,7 +66,7 @@ WEB = "https://gmhs.cz/"
 # Verze stylopisu pro všechny stránky („style.css?v=…“). Po změně style.css ji
 # zvýšit, aby prohlížeče návštěvníků nepoužily starou verzi z mezipaměti.
 # Prázdné = bez verze. Jednotlivá stránka ji může přebít údajem „verze_stylu“.
-VERZE_STYLU = "2026-10-07-9"
+VERZE_STYLU = "2026-10-07-12"
 
 # Položka menu: (popisek, odkaz, podnabídka nebo None).
 # V podnabídce: (odkaz, popisek); odkaz None = neaktivní šedý text (připravuje se).

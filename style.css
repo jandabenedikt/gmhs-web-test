@@ -3,7 +3,7 @@
    Gymnázium a Hudební škola hlavního města Prahy
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Work+Sans:wght@400;500;600&family=Caveat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Caveat:wght@600&display=swap');
 
 :root {
   --accent: #7a2e2e;       /* výchozí akcentová barva — alternativy: #5b4636, #3f5a4a, #4a4139 */
@@ -1057,3 +1057,49 @@ h1.page-title::after { content: ''; display: block; margin-top: 16px; }
   .sbar > .brand { order: 2; }
   .sbar > .stab:last-of-type { order: 3; }
 }
+
+/* Oddíl s logem v liště je vždy o odstín tmavší než lišta dané sekce */
+body.sec-hudba { --bar-dark: #5e2222; }
+body.sec-skola { --bar-dark: #614812; }
+.sbar > .brand { background: var(--bar-dark); }
+
+/* Zápatí má v obou sekcích stejný odstín jako oddíl s logem v horní liště */
+body.sec-skola { --accent-light: #ead79a; }
+.site-footer { background: var(--bar-dark); border-top: none; color: rgba(250, 246, 240, 0.8); }
+.site-footer .footer-top { border-bottom-color: rgba(250, 246, 240, 0.18); }
+.site-footer .footer-brand img { filter: brightness(0) invert(1); }
+.site-footer .footer-brand-name { color: #faf6f0; }
+.site-footer .footer-brand-text,
+.site-footer .footer-brand-address,
+.site-footer .footer-col,
+.site-footer .footer-contact,
+.site-footer .footer-contact a { color: rgba(250, 246, 240, 0.85); }
+.site-footer .footer-h,
+.site-footer .footer-switch { color: var(--accent-light) !important; }
+.site-footer .footer-pending { color: rgba(250, 246, 240, 0.55); }
+.site-footer .social-icon { border-color: rgba(250, 246, 240, 0.4); color: #faf6f0; }
+.site-footer .footer-copyright { color: rgba(250, 246, 240, 0.65); }
+
+/* Velikosti a tloušťky písma v liště a menu sladěné s náhledem (Cormorant Garamond
+   má menší „x-výšku“ než náhradní písmo náhledu, proto je o něco větší a silnější) */
+.sbar .brand-title, .sbar .brand-sub { font-size: 16px; font-weight: 700; }
+.stab { font-size: 27px; font-weight: 600; }
+.stab.on { font-size: 34px; font-weight: 700; }
+.snav .main-nav, .snav .nav-link { font-size: 17px; font-weight: 500; }
+@media (max-width: 1024px) {
+  .sbar .brand-title, .sbar .brand-sub { font-size: 15px; }
+  .stab { font-size: 20px; }
+  .stab.on { font-size: 24px; }
+  .snav .nav-link { font-size: 16px; }
+}
+/* doladění šířek podle náhledu */
+.sbar .brand-title, .sbar .brand-sub { font-size: 15px; }
+.stab { font-size: 25px; }
+@media (max-width: 1024px) {
+  .sbar .brand-title, .sbar .brand-sub { font-size: 14px; }
+  .stab { font-size: 18px; }
+  .stab.on { font-size: 22px; }
+}
+/* Cormorant Garamond je i v nejtučnějším řezu světlejší než náhled — jemné zesílení tahu */
+.stab.on, .sbar .brand-title, .sbar .brand-sub { -webkit-text-stroke: 0.03em currentColor; }
+.stab:not(.on) { -webkit-text-stroke: 0.012em currentColor; }
