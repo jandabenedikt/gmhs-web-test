@@ -987,3 +987,23 @@ h1.page-title::after { content: ''; display: block; margin-top: 16px; }
 @media (min-width: 1025px) {
   .snav .dropdown-menu a, .snav .dropdown-menu .dd-soon { white-space: nowrap; padding-left: 28px; padding-right: 28px; }
 }
+
+/* Menší lišta sekcí i pruh menu (7. 10. večer) */
+.sbar { min-height: 60px; }
+.sbar .brand { padding: 8px 12px; }
+.sbar .brand img { height: 44px; }
+.sbar .brand-title, .sbar .brand-sub { font-size: 14px; }
+.stab { font-size: 24px; }
+.stab.on { font-size: 30px; }
+.snav .main-nav { font-size: 17px; }
+.snav .nav-link { font-size: 17px; padding: 12px 8px; }
+@media (max-width: 1024px) {
+  .sbar .brand { padding: 8px 20px; justify-content: center; }
+  .sbar .brand img { height: 36px; }
+  .sbar .brand-title, .sbar .brand-sub { font-size: 13px; }
+  .stab { font-size: 18px; min-height: 42px; }
+  .stab.on { font-size: 21px; }
+  .snav { min-height: 46px; }
+  .snav .nav-toggle { height: 40px; }
+  .snav .nav-link { font-size: 16px; padding: 10px 24px; }
+}
