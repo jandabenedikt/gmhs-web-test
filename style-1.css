@@ -1,0 +1,604 @@
+/* ==========================================================================
+   GMHS — sdílený stylopis pro úvodní stránku a sekci „O nás“
+   Gymnázium a Hudební škola hlavního města Prahy
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Work+Sans:wght@400;500;600&family=Caveat:wght@600&display=swap');
+
+:root {
+  --accent: #7a2e2e;       /* výchozí akcentová barva — alternativy: #5b4636, #3f5a4a, #4a4139 */
+  --bg: #faf6f0;
+  --bg-alt: #f2ebdc;
+  --bg-footer: #f0e6d8;
+  --text: #2a2420;
+  --text-muted: #4a4139;
+  --text-muted-2: #6b6055;
+  --text-light: #5c5347;
+  --text-body: #3a342c;
+  --text-faint: #8a7d6c;
+  --text-faint-2: #7a6f60;
+  --text-pending: #9c8f7c;
+  --border: #e6ddd0;
+  --border-2: #e2d5c1;
+  --border-row: #ece3d4;
+  --border-dash: #d8ccb8;
+  --note-bg: #fbf5ec;
+  --card-bg: #ffffff;
+  --page-width: 1440px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Obecné pravidlo: text podložený odkazem je vždy podtržený. Výjimky
+   (navigace, tlačítka, karty, ikony) mají text-decoration: none nastaveno
+   výslovně u své třídy níže. */
+a { color: inherit; text-decoration: underline; }
+a:hover { opacity: 0.7; }
+
+.display { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+img { max-width: 100%; }
+
+/* Page wrapper — centers the fixed-width layout in the browser window */
+.page {
+  width: var(--page-width);
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Header / navigation ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 64px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+.brand img { height: 60px; width: auto; display: block; }
+.brand-text { line-height: 1.15; }
+.brand-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.brand-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 1px;
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 15px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+.nav-item { position: relative; }
+.nav-link {
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0 0 4px;
+  cursor: pointer;
+}
+.nav-link.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  min-width: 300px;
+  padding: 8px 0;
+  box-shadow: 0 12px 28px rgba(42, 36, 32, 0.10);
+  z-index: 40;
+}
+.nav-item.open .dropdown-menu { display: block; }
+.dropdown-menu a {
+  display: block;
+  padding: 11px 22px;
+  font-size: 14.5px;
+  color: var(--text);
+  text-decoration: none;
+}
+.dropdown-menu a:hover { background: var(--bg-alt); opacity: 1; }
+.dropdown-menu a.active { color: var(--accent); font-weight: 600; }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.btn-bakalari {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 12px 22px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Jednotný styl pro odkazy na PDF soubory — tvar tlačítka Bakaláři, barevnost tlačítek kotev */
+.btn-pdf {
+  display: inline-block;
+  background: var(--bg);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 12px 22px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--bg-footer);
+  border-top: 1px solid var(--border);
+  padding: 48px 64px 28px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr auto;
+  gap: 40px;
+  align-items: start;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-2);
+}
+.footer-brand { display: flex; align-items: center; gap: 14px; }
+.footer-brand img { height: 48px; width: auto; display: block; }
+.footer-brand-text { font-size: 14px; line-height: 1.5; color: var(--text-muted); }
+.footer-brand-name { font-size: 15px; font-weight: 600; color: var(--text); }
+.footer-brand-address { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+.footer-contact { font-size: 14px; line-height: 2; color: var(--text-muted); }
+.footer-contact a { color: var(--text-muted); }
+.footer-social { display: flex; gap: 12px; }
+.social-icon {
+  width: 38px; height: 38px;
+  border: 1px solid #c9bda9;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.footer-copyright { padding-top: 20px; font-size: 12px; color: var(--text-faint); }
+
+/* ---------- Shared content blocks ---------- */
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.page-header { padding: 56px 64px 8px; }
+.page-header .page-lead {
+  max-width: 760px;
+  margin: 16px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+h1.page-title {
+  margin: 10px 0 0;
+  font-size: 44px;
+  font-weight: 600;
+}
+.content { padding: 32px 64px 100px; max-width: 900px; }
+.content.wide { max-width: 1100px; }
+
+.sec-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 16px;
+  color: var(--accent);
+}
+h3.sub-num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 21px;
+  margin: 40px 0 10px;
+  color: var(--accent);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+.card {
+  background: var(--bg);
+  border-top: 2px solid var(--border);
+  border-left: 2px solid var(--border);
+  border-right: none;
+  border-bottom: none;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+
+.note {
+  margin: 16px 0;
+  padding: 14px 18px;
+  background: var(--note-bg);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-faint);
+}
+.note strong { font-style: normal; color: var(--text-muted); }
+
+table.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+table.simple-table th, table.simple-table td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+table.simple-table th {
+  background: #f0e6d8;
+  font-weight: 600;
+  font-size: 13px;
+}
+table.simple-table tr:nth-child(even) td { background: #fdfbf7; }
+
+/* Plain roster table (Pedagogové a poradenské pracoviště) */
+.roster-table-wrap { background: var(--card-bg); overflow: hidden; }
+table.roster-table { border-collapse: collapse; width: 100%; }
+table.roster-table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-faint-2); padding: 10px 12px;
+}
+table.roster-table td { font-size: 13.5px; padding: 9px 12px; color: var(--text-body); }
+table.roster-table tr:nth-child(even) td { background: var(--bg); }
+
+.instr-lead { margin: 10px 0 0; font-size: 14px; color: var(--text-muted-2); }
+.instr-label { margin: 16px 0 0; font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+.instr-names { margin: 6px 0 0; font-size: 14.5px; line-height: 2.1; color: var(--text-body); }
+
+.link-panel {
+  display: block;
+  max-width: 1100px;
+  position: relative;
+  aspect-ratio: 21 / 7;
+  background: var(--bg-footer);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  text-decoration: none;
+}
+.link-panel-inner {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  color: var(--text-faint-2);
+}
+.link-panel-icon {
+  width: 78px; height: 78px; border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.link-panel-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.link-panel-url { font-size: 13px; }
+
+.pending-box {
+  max-width: 1100px;
+  aspect-ratio: 21/7;
+  border: 1px dashed var(--border-dash);
+  background: var(--note-bg);
+  display: flex; align-items: center; justify-content: center;
+}
+.pending-box span {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px; font-weight: 600; color: var(--text-pending);
+}
+
+.doc-row, .term-row, .price-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--border-row);
+  font-size: 15px;
+}
+.doc-row:last-child, .term-row:last-child, .price-row:last-child { border-bottom: none; }
+.doc-row .doc-link {
+  flex-shrink: 0; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--accent); color: var(--accent); padding: 6px 14px; border-radius: 20px;
+}
+.term-row span:last-child, .price-row .price { font-weight: 600; color: var(--accent); white-space: nowrap; }
+.row-box { background: var(--bg); padding: 6px 24px; }
+
+.anchor-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 64px;
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.anchor-nav a {
+  border: 1px solid var(--accent); color: var(--accent);
+  padding: 9px 18px; border-radius: 20px; font-size: 14px; font-weight: 600;
+  background: var(--bg);
+  text-decoration: none;
+}
+
+/* ---------- Homepage-specific ---------- */
+.hero {
+  padding: 64px 64px 56px;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.hero-text {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  gap: 22px; width: 660px; flex-shrink: 0;
+  padding: 40px 44px;
+}
+.hero-text h1 { margin: 0; font-size: 64px; font-weight: 600; line-height: 1.08; }
+.hero-text p { margin: 0; font-size: 19px; line-height: 1.6; color: var(--text-muted); max-width: 620px; }
+.hero-actions { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 28px; font-size: 15px; font-weight: 600; border-radius: 2px; text-decoration: none; }
+.btn-solid { background: var(--accent); color: var(--bg); }
+.btn-outline { border: 1px solid #c9bda9; color: var(--text); }
+.hero-image { flex: 1; position: relative; min-height: 320px; }
+.hero-image img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+  -webkit-mask-image: linear-gradient(to left, black 45%, transparent 92%);
+  mask-image: linear-gradient(to left, black 45%, transparent 92%);
+}
+
+.about-section { padding: 56px 64px 64px; border-top: 1px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 460px 1fr; gap: 48px; align-items: start; }
+.about-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid var(--border); display: block; }
+.about-lead {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600; font-size: 24px; color: var(--accent); line-height: 1.3;
+}
+.about-text { display: flex; flex-direction: column; gap: 20px; }
+.about-text p { margin: 0; font-size: 16px; line-height: 1.7; color: var(--text-muted); }
+
+.news-section { padding: 40px 64px 80px; border-top: 1px solid var(--border); }
+.news-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+.news-head h2 { margin: 0; font-size: 28px; font-weight: 600; }
+.news-head a { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.news-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+.news-card { background: #fff; padding: 22px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; }
+.news-tag {
+  align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  background: var(--bg-alt); color: #6b5636; padding: 5px 10px; border-radius: 2px;
+}
+.news-title { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.news-date { font-size: 12px; color: var(--text-muted-2); }
+.news-excerpt { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+
+/* ---------- FAQ ---------- */
+.faq-item { border-top: 1px solid var(--border); padding-top: 22px; margin-top: 22px; }
+.faq-item:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.faq-q {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600; font-size: 21px; margin: 0; color: var(--accent);
+}
+.faq-a { margin: 10px 0 0; font-size: 15px; line-height: 1.8; color: var(--text-body); }
+
+/* ---------- Video embed ---------- */
+.video-frame { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); overflow: hidden; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-label { margin: 12px 0 0; font-size: 14.5px; font-weight: 600; color: var(--text); }
+.video-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+
+/* ---------- Alert box ---------- */
+.alert-box {
+  margin-top: 32px; border-left: 4px solid var(--accent); background: #fbf1ef;
+  padding: 18px 22px; font-size: 15px; line-height: 1.6; font-weight: 600; color: #5c231f;
+}
+
+/* ---------- Sub-title (uppercase label above a short block) ---------- */
+.sub-title { font-size: 13px; font-weight: 600; color: var(--text-faint-2); text-transform: uppercase; letter-spacing: 0.05em; margin: 24px 0 8px; }
+
+/* ---------- Ensembles (Hudební život → Orchestry a soubory) ---------- */
+.ens-block { padding: 48px 64px; }
+.ens-block.alt { background: var(--bg-alt); }
+.ens-inner { max-width: 1100px; }
+.ens-inner img { width: 100%; height: auto; display: block; border: 1px solid var(--border); margin: 20px 0 0; }
+.ens-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 28px; margin: 0; color: var(--accent); }
+.ens-text { margin: 14px 0 0; font-size: 15px; line-height: 1.85; color: var(--text-body); }
+.ens-pending { font-size: 14px; color: var(--text-pending); font-style: italic; margin: 14px 0 0; }
+
+/* ---------- Aktuality (jednotlivé příspěvky) ---------- */
+.aktualita-block { padding: 48px 64px; }
+.aktualita-gymnazium { background: var(--bg-alt); }
+.aktualita-hudebni-skola { background: var(--bg); }
+.aktualita-inner { max-width: 900px; }
+.aktualita-tag { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.aktualita-title { margin: 8px 0 0; font-size: 28px; font-weight: 600; }
+.aktualita-date { margin: 8px 0 0; font-size: 13px; color: var(--text-muted-2); }
+.aktualita-text { margin: 16px 0 0; font-size: 15px; line-height: 1.85; color: var(--text-body); }
+.aktualita-actions { margin-top: 24px; }
+
+/* ---------- Gallery cards ---------- */
+/* ---------- Plain lists inside prose ---------- */
+.plain-list { margin: 10px 0 0; padding-left: 20px; font-size: 15px; line-height: 1.8; color: var(--text-body); }
+.plain-list li { margin-bottom: 8px; }
+
+/* ---------- Kalendář akcí (oddíly po měsících, vykresluje kalendar.js) ---------- */
+.cal-months { padding: 8px 0 100px; }
+.cal-month { padding: 40px 64px 8px; border-top: 1px solid var(--border); margin-top: 16px; }
+.cal-month.first { border-top: none; margin-top: 0; }
+.cal-month-title { margin: 0 0 20px; font-size: 28px; font-weight: 600; color: var(--accent); }
+.cal-list { max-width: 1100px; display: flex; flex-direction: column; gap: 12px; }
+.cal-event {
+  display: grid; grid-template-columns: 120px 1fr; gap: 24px;
+  background: var(--card-bg); padding: 20px 24px; border-left: 3px solid var(--accent);
+}
+.cal-date { display: flex; flex-direction: column; gap: 4px; }
+.cal-day { font-size: 30px; font-weight: 600; line-height: 1; color: var(--accent); }
+.cal-weekday { font-size: 12px; color: var(--text-muted-2); text-transform: uppercase; letter-spacing: 0.05em; }
+.cal-title { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.4; color: var(--text); }
+.cal-title a { color: inherit; }
+.cal-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 6px; font-size: 14px; color: var(--text-muted-2); }
+.cal-time { font-weight: 600; color: var(--accent); }
+.cal-desc { margin: 10px 0 0; font-size: 14.5px; line-height: 1.7; color: var(--text-body); }
+.cal-empty { max-width: 1100px; margin: 0; padding: 18px 0; font-size: 15px; color: var(--text-pending); font-style: italic; }
+.cal-months > .cal-empty { padding: 40px 64px; }
+.cal-past-label {
+  display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; background: var(--bg-alt); color: var(--text-faint-2); padding: 4px 9px; border-radius: 2px;
+}
+.cal-event.is-past { background: transparent; border-left-color: var(--border-2); }
+.cal-event.is-past .cal-day,
+.cal-event.is-past .cal-time,
+.cal-event.is-past .cal-title,
+.cal-event.is-past .cal-meta,
+.cal-event.is-past .cal-desc { color: var(--text-pending); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .site-header, .page-header, .content, .about-section, .news-section, .anchor-nav, .site-footer { padding-left: 24px; padding-right: 24px; }
+  .hero { flex-direction: column; padding: 32px 24px; }
+  .hero-text { width: 100%; padding: 28px; }
+  .hero-image { min-height: 260px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ---------- Tlačítko „Zpět nahoru" ----------
+   Vkládá se přes JS do každé stránky (viz nav.js) — kulaté, bez výplně,
+   jen obrys a šipka v akcentové barvě. Skryté, dokud uživatel nesjede pod
+   spodní okraj záhlaví, pak se plynule zobrazí (viz .back-to-top-visible). */
+.back-to-top {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+  z-index: 60;
+}
+.back-to-top:hover { background: rgba(122, 46, 46, 0.08); }
+.back-to-top svg { width: 20px; height: 20px; display: block; }
+.back-to-top-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* ---------- Mobilní zobrazení (telefony + tablety/iPady, ≤1024px) ---------- */
+@media (max-width: 1024px) {
+  /* Rozcestník v hlavičce → rozbalovací menu přes hamburger tlačítko */
+  .site-header { position: relative; }
+  .brand { order: 1; }
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    order: 2;
+    margin-left: auto;
+  }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); }
+  .btn-bakalari { order: 3; }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 28px rgba(42, 36, 32, 0.10);
+    padding: 8px 0;
+    z-index: 50;
+  }
+  .main-nav.mobile-open { display: flex; }
+  .main-nav .nav-link { display: block; width: 100%; padding: 14px 24px; text-align: left; }
+  .dropdown-menu { position: static; box-shadow: none; border: none; min-width: 0; padding: 0 0 4px 20px; }
+
+  /* Nadpis a zarovnání hero sekce na úvodní stránce */
+  .hero { flex-direction: column; }
+  .hero-text { width: 100%; padding: 0; }
+  .hero-text h1 { font-size: clamp(28px, 7vw, 42px); line-height: 1.16; }
+
+  /* Obsahové fotky se na mobilu nezobrazují (loga a fotky na Naši partneři výjimka) */
+  .hero-image,
+  .about-grid img,
+  .ens-inner img { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+
+  /* Vložená YouTube videa pod sebe, ne vedle sebe */
+  .video-grid { grid-template-columns: 1fr !important; }
+
+  /* Kotvová lišta (.anchor-nav) se při scrollu dolů schová, při scrollu nahoru vrátí — viz nav.js */
+  .anchor-nav { transition: transform 0.25s ease; }
+  .anchor-nav.anchor-hidden { transform: translateY(-100%); }
+
+  /* Tlačítko „Zpět nahoru" o něco menší a blíž k okraji, ať nepřekáží obsahu */
+  .back-to-top { right: 16px; bottom: 16px; width: 42px; height: 42px; }
+  .back-to-top svg { width: 18px; height: 18px; }
+
+  /* Kalendář akcí — datum nad názvem akce */
+  .cal-event { grid-template-columns: 1fr; gap: 10px; padding: 16px 18px; }
+  .cal-date { flex-direction: row; align-items: baseline; gap: 10px; }
+  .cal-day { font-size: 24px; }
+}
+
+/* Kalendář akcí — užší boční okraje od stejné šířky jako hlavička stránky (.page-header, ≤960px) */
+@media (max-width: 960px) {
+  .cal-month { padding: 32px 24px 8px; }
+  .cal-months > .cal-empty { padding: 32px 24px; }
+}
+
+/* Tabulka pedagogů (Pedagogové a poradenské pracoviště) — na výšku (portrait)
+   na úzkých mobilech vidět jen Jméno a Předmět, zbytek sloupců (Kabinet,
+   Telefon, E-mail) se schová. Po otočení na šířku (landscape) se zobrazí
+   celá tabulka beze změny. */
+@media (max-width: 1024px) and (orientation: portrait) {
+  table.roster-table th:nth-child(n+3),
+  table.roster-table td:nth-child(n+3) { display: none; }
+}

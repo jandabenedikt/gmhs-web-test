@@ -1,0 +1,973 @@
+/* ==========================================================================
+   GMHS — sdílený stylopis pro úvodní stránku a sekci „O nás“
+   Gymnázium a Hudební škola hlavního města Prahy
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Work+Sans:wght@400;500;600&family=Caveat:wght@600&display=swap');
+
+:root {
+  --accent: #7a2e2e;       /* výchozí akcentová barva — alternativy: #5b4636, #3f5a4a, #4a4139 */
+  --bg: #faf6f0;
+  --bg-alt: #f2ebdc;
+  --bg-footer: #f0e6d8;
+  --text: #2a2420;
+  --text-muted: #4a4139;
+  --text-muted-2: #6b6055;
+  --text-light: #5c5347;
+  --text-body: #3a342c;
+  --text-faint: #8a7d6c;
+  --text-faint-2: #7a6f60;
+  --text-pending: #9c8f7c;
+  --border: #e6ddd0;
+  --border-2: #e2d5c1;
+  --border-row: #ece3d4;
+  --border-dash: #d8ccb8;
+  --note-bg: #fbf5ec;
+  --card-bg: #ffffff;
+  --page-width: 1440px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Obecné pravidlo: text podložený odkazem je vždy podtržený. Výjimky
+   (navigace, tlačítka, karty, ikony) mají text-decoration: none nastaveno
+   výslovně u své třídy níže. */
+a { color: inherit; text-decoration: underline; }
+a:hover { opacity: 0.7; }
+
+.display { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+img { max-width: 100%; }
+
+/* Page wrapper — centers the fixed-width layout in the browser window */
+.page {
+  width: var(--page-width);
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Header / navigation ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 64px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+.brand img { height: 60px; width: auto; display: block; }
+.brand-text { line-height: 1.15; }
+.brand-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.brand-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 1px;
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-size: 15px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+.nav-item { position: relative; }
+.nav-link {
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--text);
+  text-decoration: none;
+  padding: 0 0 4px;
+  cursor: pointer;
+}
+.nav-link.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  min-width: 300px;
+  padding: 8px 0;
+  box-shadow: 0 12px 28px rgba(42, 36, 32, 0.10);
+  z-index: 40;
+}
+.nav-item.open .dropdown-menu { display: block; }
+.dropdown-menu a {
+  display: block;
+  padding: 11px 22px;
+  font-size: 14.5px;
+  color: var(--text);
+  text-decoration: none;
+}
+.dropdown-menu a:hover { background: var(--bg-alt); opacity: 1; }
+.dropdown-menu a.active { color: var(--accent); font-weight: 600; }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.btn-bakalari {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 12px 22px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* Jednotný styl pro odkazy na PDF soubory — tvar tlačítka Bakaláři, barevnost tlačítek kotev */
+.btn-pdf {
+  display: inline-block;
+  background: var(--bg);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 12px 22px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--bg-footer);
+  border-top: 1px solid var(--border);
+  padding: 48px 64px 28px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr auto;
+  gap: 40px;
+  align-items: start;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-2);
+}
+.footer-brand { display: flex; align-items: center; gap: 14px; }
+.footer-brand img { height: 48px; width: auto; display: block; }
+.footer-brand-text { font-size: 14px; line-height: 1.5; color: var(--text-muted); }
+.footer-brand-name { font-size: 15px; font-weight: 600; color: var(--text); }
+.footer-brand-address { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+.footer-contact { font-size: 14px; line-height: 2; color: var(--text-muted); }
+.footer-contact a { color: var(--text-muted); }
+.footer-social { display: flex; gap: 12px; }
+.social-icon {
+  width: 38px; height: 38px;
+  border: 1px solid #c9bda9;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.footer-copyright { padding-top: 20px; font-size: 12px; color: var(--text-faint); }
+
+/* ---------- Shared content blocks ---------- */
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.page-header { padding: 56px 64px 8px; }
+.page-header .page-lead {
+  max-width: 760px;
+  margin: 16px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+h1.page-title {
+  margin: 10px 0 0;
+  font-size: 44px;
+  font-weight: 600;
+}
+.content { padding: 32px 64px 100px; max-width: 900px; }
+.content.wide { max-width: 1100px; }
+
+.sec-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 16px;
+  color: var(--accent);
+}
+h3.sub-num {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 21px;
+  margin: 40px 0 10px;
+  color: var(--accent);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 32px 0;
+}
+
+.card {
+  background: var(--bg);
+  border-top: 2px solid var(--border);
+  border-left: 2px solid var(--border);
+  border-right: none;
+  border-bottom: none;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px; }
+
+.note {
+  margin: 16px 0;
+  padding: 14px 18px;
+  background: var(--note-bg);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-faint);
+}
+.note strong { font-style: normal; color: var(--text-muted); }
+
+table.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+}
+table.simple-table th, table.simple-table td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+table.simple-table th {
+  background: #f0e6d8;
+  font-weight: 600;
+  font-size: 13px;
+}
+table.simple-table tr:nth-child(even) td { background: #fdfbf7; }
+
+/* Plain roster table (Pedagogové a poradenské pracoviště) */
+.roster-table-wrap { background: var(--card-bg); overflow: hidden; }
+table.roster-table { border-collapse: collapse; width: 100%; }
+table.roster-table th {
+  text-align: left; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-faint-2); padding: 10px 12px;
+}
+table.roster-table td { font-size: 13.5px; padding: 9px 12px; color: var(--text-body); }
+table.roster-table tr:nth-child(even) td { background: var(--bg); }
+
+.instr-lead { margin: 10px 0 0; font-size: 14px; color: var(--text-muted-2); }
+.instr-label { margin: 16px 0 0; font-size: 13px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+.instr-names { margin: 6px 0 0; font-size: 14.5px; line-height: 2.1; color: var(--text-body); }
+
+.link-panel {
+  display: block;
+  max-width: 1100px;
+  position: relative;
+  aspect-ratio: 21 / 7;
+  background: var(--bg-footer);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  text-decoration: none;
+}
+.link-panel-inner {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+  color: var(--text-faint-2);
+}
+.link-panel-icon {
+  width: 78px; height: 78px; border-radius: 50%;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+}
+.link-panel-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.link-panel-url { font-size: 13px; }
+
+.pending-box {
+  max-width: 1100px;
+  aspect-ratio: 21/7;
+  border: 1px dashed var(--border-dash);
+  background: var(--note-bg);
+  display: flex; align-items: center; justify-content: center;
+}
+.pending-box span {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px; font-weight: 600; color: var(--text-pending);
+}
+
+.doc-row, .term-row, .price-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--border-row);
+  font-size: 15px;
+}
+.doc-row:last-child, .term-row:last-child, .price-row:last-child { border-bottom: none; }
+.doc-row .doc-link {
+  flex-shrink: 0; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid var(--accent); color: var(--accent); padding: 6px 14px; border-radius: 20px;
+}
+.term-row span:last-child, .price-row .price { font-weight: 600; color: var(--accent); white-space: nowrap; }
+.row-box { background: var(--bg); padding: 6px 24px; }
+
+.anchor-nav {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 64px;
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.anchor-nav a {
+  border: 1px solid var(--accent); color: var(--accent);
+  padding: 9px 18px; border-radius: 20px; font-size: 14px; font-weight: 600;
+  background: var(--bg);
+  text-decoration: none;
+}
+
+/* ---------- Homepage-specific ---------- */
+.hero {
+  padding: 64px 64px 56px;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.hero-text {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+  gap: 22px; width: 660px; flex-shrink: 0;
+  padding: 40px 44px;
+}
+.hero-text h1 { margin: 0; font-size: 64px; font-weight: 600; line-height: 1.08; }
+.hero-text p { margin: 0; font-size: 19px; line-height: 1.6; color: var(--text-muted); max-width: 620px; }
+.hero-actions { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 28px; font-size: 15px; font-weight: 600; border-radius: 2px; text-decoration: none; }
+.btn-solid { background: var(--accent); color: var(--bg); }
+.btn-outline { border: 1px solid #c9bda9; color: var(--text); }
+.hero-image { flex: 1; position: relative; min-height: 320px; }
+.hero-image img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+  -webkit-mask-image: linear-gradient(to left, black 45%, transparent 92%);
+  mask-image: linear-gradient(to left, black 45%, transparent 92%);
+}
+
+.about-section { padding: 56px 64px 64px; border-top: 1px solid var(--border); }
+.about-grid { display: grid; grid-template-columns: 460px 1fr; gap: 48px; align-items: start; }
+.about-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid var(--border); display: block; }
+.about-lead {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600; font-size: 24px; color: var(--accent); line-height: 1.3;
+}
+.about-text { display: flex; flex-direction: column; gap: 20px; }
+.about-text p { margin: 0; font-size: 16px; line-height: 1.7; color: var(--text-muted); }
+
+.news-section { padding: 40px 64px 80px; border-top: 1px solid var(--border); }
+.news-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+.news-head h2 { margin: 0; font-size: 28px; font-weight: 600; }
+.news-head a { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.news-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+.news-card { background: #fff; padding: 22px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; }
+.news-tag {
+  align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+  background: var(--bg-alt); color: #6b5636; padding: 5px 10px; border-radius: 2px;
+}
+.news-title { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.news-date { font-size: 12px; color: var(--text-muted-2); }
+.news-excerpt { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+
+/* ---------- FAQ ---------- */
+.faq-item { border-top: 1px solid var(--border); padding-top: 22px; margin-top: 22px; }
+.faq-item:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+.faq-q {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600; font-size: 21px; margin: 0; color: var(--accent);
+}
+.faq-a { margin: 10px 0 0; font-size: 15px; line-height: 1.8; color: var(--text-body); }
+
+/* ---------- Video embed ---------- */
+.video-frame { position: relative; aspect-ratio: 16/9; background: #000; border: 1px solid var(--border); overflow: hidden; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-label { margin: 12px 0 0; font-size: 14.5px; font-weight: 600; color: var(--text); }
+.video-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+
+/* ---------- Alert box ---------- */
+.alert-box {
+  margin-top: 32px; border-left: 4px solid var(--accent); background: #fbf1ef;
+  padding: 18px 22px; font-size: 15px; line-height: 1.6; font-weight: 600; color: #5c231f;
+}
+
+/* ---------- Sub-title (uppercase label above a short block) ---------- */
+.sub-title { font-size: 13px; font-weight: 600; color: var(--text-faint-2); text-transform: uppercase; letter-spacing: 0.05em; margin: 24px 0 8px; }
+
+/* ---------- Ensembles (Hudební život → Orchestry a soubory) ---------- */
+.ens-block { padding: 48px 64px; }
+.ens-block.alt { background: var(--bg-alt); }
+.ens-inner { max-width: 1100px; }
+.ens-inner img { width: 100%; height: auto; display: block; border: 1px solid var(--border); margin: 20px 0 0; }
+.ens-title { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 28px; margin: 0; color: var(--accent); }
+.ens-text { margin: 14px 0 0; font-size: 15px; line-height: 1.85; color: var(--text-body); }
+.ens-pending { font-size: 14px; color: var(--text-pending); font-style: italic; margin: 14px 0 0; }
+
+/* ---------- Aktuality (jednotlivé příspěvky) ---------- */
+.aktualita-block { padding: 48px 64px; }
+.aktualita-gymnazium { background: var(--bg-alt); }
+.aktualita-hudebni-skola { background: var(--bg); }
+.aktualita-inner { max-width: 900px; }
+.aktualita-tag { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.aktualita-title { margin: 8px 0 0; font-size: 28px; font-weight: 600; }
+.aktualita-date { margin: 8px 0 0; font-size: 13px; color: var(--text-muted-2); }
+.aktualita-text { margin: 16px 0 0; font-size: 15px; line-height: 1.85; color: var(--text-body); }
+.aktualita-actions { margin-top: 24px; }
+
+/* ---------- Gallery cards ---------- */
+/* ---------- Plain lists inside prose ---------- */
+.plain-list { margin: 10px 0 0; padding-left: 20px; font-size: 15px; line-height: 1.8; color: var(--text-body); }
+.plain-list li { margin-bottom: 8px; }
+
+/* ---------- Kalendář akcí (oddíly po měsících, vykresluje kalendar.js) ---------- */
+.cal-months { padding: 8px 0 100px; }
+.cal-month { padding: 40px 64px 8px; border-top: 1px solid var(--border); margin-top: 16px; }
+.cal-month.first { border-top: none; margin-top: 0; }
+.cal-month-title { margin: 0 0 20px; font-size: 28px; font-weight: 600; color: var(--accent); }
+.cal-list { max-width: 1100px; display: flex; flex-direction: column; gap: 12px; }
+.cal-event {
+  display: grid; grid-template-columns: 120px 1fr; gap: 24px;
+  background: var(--card-bg); padding: 20px 24px; border-left: 3px solid var(--accent);
+}
+.cal-date { display: flex; flex-direction: column; gap: 4px; }
+.cal-day { font-size: 30px; font-weight: 600; line-height: 1; color: var(--accent); }
+.cal-weekday { font-size: 12px; color: var(--text-muted-2); text-transform: uppercase; letter-spacing: 0.05em; }
+.cal-title { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.4; color: var(--text); }
+.cal-title a { color: inherit; }
+.cal-meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 6px; font-size: 14px; color: var(--text-muted-2); }
+.cal-time { font-weight: 600; color: var(--accent); }
+.cal-desc { margin: 10px 0 0; font-size: 14.5px; line-height: 1.7; color: var(--text-body); }
+.cal-empty { max-width: 1100px; margin: 0; padding: 18px 0; font-size: 15px; color: var(--text-pending); font-style: italic; }
+.cal-months > .cal-empty { padding: 40px 64px; }
+.cal-past-label {
+  display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+  text-transform: uppercase; background: var(--bg-alt); color: var(--text-faint-2); padding: 4px 9px; border-radius: 2px;
+}
+.cal-event.is-past { background: transparent; border-left-color: var(--border-2); }
+.cal-event.is-past .cal-day,
+.cal-event.is-past .cal-time,
+.cal-event.is-past .cal-title,
+.cal-event.is-past .cal-meta,
+.cal-event.is-past .cal-desc { color: var(--text-pending); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .site-header, .page-header, .content, .about-section, .news-section, .anchor-nav, .site-footer { padding-left: 24px; padding-right: 24px; }
+  .hero { flex-direction: column; padding: 32px 24px; }
+  .hero-text { width: 100%; padding: 28px; }
+  .hero-image { min-height: 260px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .news-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ---------- Tlačítko „Zpět nahoru" ----------
+   Vkládá se přes JS do každé stránky (viz nav.js) — kulaté, bez výplně,
+   jen obrys a šipka v akcentové barvě. Skryté, dokud uživatel nesjede pod
+   spodní okraj záhlaví, pak se plynule zobrazí (viz .back-to-top-visible). */
+.back-to-top {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+  z-index: 60;
+}
+.back-to-top:hover { background: rgba(122, 46, 46, 0.08); }
+.back-to-top svg { width: 20px; height: 20px; display: block; }
+.back-to-top-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+/* ---------- Mobilní zobrazení (telefony + tablety/iPady, ≤1024px) ---------- */
+@media (max-width: 1024px) {
+  /* Rozcestník v hlavičce → rozbalovací menu přes hamburger tlačítko */
+  .site-header { position: relative; }
+  .brand { order: 1; }
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    order: 2;
+    margin-left: auto;
+  }
+  .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); }
+  .btn-bakalari { order: 3; }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 28px rgba(42, 36, 32, 0.10);
+    padding: 8px 0;
+    z-index: 50;
+  }
+  .main-nav.mobile-open { display: flex; }
+  .main-nav .nav-link { display: block; width: 100%; padding: 14px 24px; text-align: left; }
+  .dropdown-menu { position: static; box-shadow: none; border: none; min-width: 0; padding: 0 0 4px 20px; }
+
+  /* Nadpis a zarovnání hero sekce na úvodní stránce */
+  .hero { flex-direction: column; }
+  .hero-text { width: 100%; padding: 0; }
+  .hero-text h1 { font-size: clamp(28px, 7vw, 42px); line-height: 1.16; }
+
+  /* Obsahové fotky se na mobilu nezobrazují (loga a fotky na Naši partneři výjimka) */
+  .hero-image,
+  .about-grid img,
+  .ens-inner img { display: none; }
+  .about-grid { grid-template-columns: 1fr; }
+
+  /* Vložená YouTube videa pod sebe, ne vedle sebe */
+  .video-grid { grid-template-columns: 1fr !important; }
+
+  /* Kotvová lišta (.anchor-nav) se při scrollu dolů schová, při scrollu nahoru vrátí — viz nav.js */
+  .anchor-nav { transition: transform 0.25s ease; }
+  .anchor-nav.anchor-hidden { transform: translateY(-100%); }
+
+  /* Tlačítko „Zpět nahoru" o něco menší a blíž k okraji, ať nepřekáží obsahu */
+  .back-to-top { right: 16px; bottom: 16px; width: 42px; height: 42px; }
+  .back-to-top svg { width: 18px; height: 18px; }
+
+  /* Kalendář akcí — datum nad názvem akce */
+  .cal-event { grid-template-columns: 1fr; gap: 10px; padding: 16px 18px; }
+  .cal-date { flex-direction: row; align-items: baseline; gap: 10px; }
+  .cal-day { font-size: 24px; }
+}
+
+/* Kalendář akcí — užší boční okraje od stejné šířky jako hlavička stránky (.page-header, ≤960px) */
+@media (max-width: 960px) {
+  .cal-month { padding: 32px 24px 8px; }
+  .cal-months > .cal-empty { padding: 32px 24px; }
+}
+
+/* Tabulka pedagogů (Pedagogové a poradenské pracoviště) — na výšku (portrait)
+   na úzkých mobilech vidět jen Jméno a Předmět, zbytek sloupců (Kabinet,
+   Telefon, E-mail) se schová. Po otočení na šířku (landscape) se zobrazí
+   celá tabulka beze změny. */
+@media (max-width: 1024px) and (orientation: portrait) {
+  table.roster-table th:nth-child(n+3),
+  table.roster-table td:nth-child(n+3) { display: none; }
+}
+
+/* ---------- Kontakt (o-nas/kontakt.html) ----------
+   Dva sloupce vedle sebe; na mobilu na výšku (portrait) skočí pravý sloupec
+   pod levý a svislá dělicí linka se změní na vodorovnou. */
+.contact-wrap { padding: 40px 64px 100px; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 1100px; }
+.contact-col-left { padding-right: 48px; }
+.contact-col-right { border-left: 1px solid #e6ddd0; padding-left: 48px; font-size: 16px; line-height: 2; color: #4a4139; }
+@media (max-width: 960px) {
+  .contact-wrap { padding: 32px 24px 72px; }
+}
+@media (max-width: 1024px) and (orientation: portrait) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-col-left { padding-right: 0; }
+  .contact-col-right { border-left: none; padding-left: 0; border-top: 1px solid #e6ddd0; margin-top: 28px; padding-top: 24px; }
+}
+
+/* ==========================================================================
+   DVĚ SEKCE WEBU — testovací verze (varianta B+C)
+   „Žijeme hudbou!“ (body.sec-hudba) = vínová, tmavý hero a tmavá patička
+   „Stránky školy“  (body.sec-skola) = pastelová žlutá
+   Barevnost se přepíná jen proměnnými níže; zbytek stylopisu je společný.
+   ========================================================================== */
+
+body.sec-hudba {
+  --bar: var(--accent);          /* lišta sekcí */
+  --bar-text: #faf6f0;
+  --btn: var(--accent);          /* plná tlačítka */
+  --accent-light: #c09c99;       /* akcent na tmavém podkladu (patička, hero) */
+  --dark: #1e1b18;               /* tmavý podklad hero a patičky */
+}
+body.sec-skola {
+  --accent: #6e5418;             /* okrová — texty, štítky, odkazy */
+  --btn: #806019;                /* hořčicová — lišta a plná tlačítka */
+  --bar: #806019;
+  --bar-text: #fbf6e2;
+  --bg: #fbf6e2;
+  --bg-alt: #f6ebc4;
+  --bg-footer: #f1e2a6;
+  --border: #e9dca8;
+  --border-2: #e1d08f;
+  --border-row: #efe4bc;
+  --border-dash: #d9c680;
+  --note-bg: #f8efcd;
+  --card-bg: #fffdf5;
+}
+/* Žlutá smí být jen plochou — nikdy barvou textu. */
+.sec-skola .btn-solid { background: var(--btn); color: var(--bg); }
+.sec-skola .btn-outline { border-color: #d9c680; }
+.sec-skola .social-icon { border-color: #c9b46a; }
+.sec-skola .news-card { background: var(--card-bg); border: 1px solid var(--border-row); }
+.sec-skola .back-to-top:hover { background: rgba(110, 84, 24, 0.08); }
+/* Linky vepsané přímo do HTML stránek (#e6ddd0) ve žluté sekci sladit s paletou */
+.sec-skola [style*="#e6ddd0"] { border-color: var(--border) !important; }
+.sec-skola table.simple-table th { background: var(--bg-alt); }
+.sec-skola table.simple-table tr:nth-child(even) td { background: var(--bg); }
+
+/* ---------- Hlavička: lišta sekcí přes celou šířku + menu sekce ---------- */
+.site-header {
+  display: block;
+  padding: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 30;
+}
+.sbar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  min-height: 96px;
+  background: var(--bar);
+  color: var(--bar-text);
+}
+.sbar .brand { justify-content: center; padding: 16px 12px; color: var(--bar-text); }
+.sbar .brand:hover { opacity: 1; }
+.sbar .brand img { height: 80px; filter: brightness(0) invert(1); }
+.sbar .brand-text { line-height: 1.6; }
+.sbar .brand-title,
+.sbar .brand-sub {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--bar-text);
+  margin: 0;
+}
+.stab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  color: var(--bar-text);
+}
+.stab:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+.stab.on { background: var(--bg); color: var(--accent); font-weight: 700; font-size: 44px; }
+.stab.on:hover { background: var(--bg); }
+
+.snav { max-width: 1312px; margin: 0 auto; padding: 0 64px; position: relative; }
+.snav .main-nav {
+  width: 100%;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: nowrap;
+  font-size: 21px;
+}
+.snav .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 20px 8px;
+  font-size: 21px;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+}
+.snav .nav-link:hover { color: var(--accent); opacity: 1; }
+.snav .nav-link.active { color: var(--accent); border-bottom: 3px solid var(--accent); }
+.snav .dropdown-menu { top: 100%; left: 50%; transform: translateX(-50%); }
+.snav .dropdown-menu.dropdown-right { left: auto; right: 0; transform: none; min-width: 240px; }
+.dropdown-menu .dd-soon { display: block; padding: 11px 22px; font-size: 14.5px; color: var(--text-pending); }
+
+/* Nadpis podstránky: hudba = pětilinková osnova, škola = krátká plná linka */
+h1.page-title::after { content: ''; display: block; margin-top: 16px; }
+.sec-hudba h1.page-title::after {
+  width: 112px; height: 13px;
+  background: repeating-linear-gradient(to bottom, var(--accent) 0 1px, transparent 1px 3px);
+  opacity: .9;
+}
+.sec-skola h1.page-title::after { width: 72px; height: 3px; background: var(--accent); }
+
+/* ---------- Patička ---------- */
+.site-footer { padding: 0; }
+.footer-in { max-width: 1312px; margin: 0 auto; padding: 52px 64px 28px; }
+.footer-top.cols-4 { grid-template-columns: 1.3fr 1fr 1fr auto; }
+.footer-col { font-size: 14px; color: var(--text-muted); }
+.footer-col a, .footer-col .footer-pending { display: block; line-height: 2; text-decoration: none; color: inherit; }
+.footer-col a:hover { text-decoration: underline; opacity: 1; }
+.footer-h {
+  margin: 0 0 10px;
+  font-family: 'Work Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.footer-switch { font-weight: 600; color: var(--accent) !important; }
+.footer-pending { color: var(--text-pending); }
+
+.footer-dark { background: var(--dark); border-top: none; color: rgba(250, 246, 240, 0.8); }
+.footer-dark .footer-top { border-bottom-color: rgba(250, 246, 240, 0.16); }
+.footer-dark .footer-brand img { filter: brightness(0) invert(1); }
+.footer-dark .footer-brand-name { color: #faf6f0; }
+.footer-dark .footer-brand-text,
+.footer-dark .footer-brand-address,
+.footer-dark .footer-col { color: rgba(250, 246, 240, 0.8); }
+.footer-dark .footer-h,
+.footer-dark .footer-switch { color: var(--accent-light) !important; }
+.footer-dark .footer-pending { color: rgba(250, 246, 240, 0.5); }
+.footer-dark .social-icon { border-color: rgba(250, 246, 240, 0.35); color: #faf6f0; }
+.footer-dark .footer-copyright { color: rgba(250, 246, 240, 0.6); }
+
+/* ---------- Mobil a tablet (≤1024px) ---------- */
+@media (max-width: 1024px) {
+  .sbar { grid-template-columns: 1fr 1fr; min-height: 0; }
+  .sbar .brand { grid-column: 1 / -1; justify-content: flex-start; padding: 12px 20px; order: 0; }
+  .sbar .brand img { height: 52px; }
+  .sbar .brand-title, .sbar .brand-sub { font-size: 16px; }
+  .stab { font-size: 22px; min-height: 56px; padding: 0 10px; }
+  .stab.on { font-size: 26px; }
+  .snav { padding: 0 20px; display: flex; align-items: center; min-height: 56px; position: static; }
+  .site-header { position: relative; }
+  .snav .nav-toggle {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+    height: 44px;
+    margin: 0;
+    color: var(--text);
+  }
+  .snav .nav-toggle .bars { display: flex; flex-direction: column; gap: 5px; width: 22px; height: auto; background: none; }
+  .snav .nav-toggle .bars span { display: block; width: 22px; height: 2px; background: var(--text); }
+  .snav .nav-toggle .lbl { width: auto; height: auto; background: none; font: 600 16px 'Work Sans', system-ui, sans-serif; }
+  .snav .main-nav { flex-wrap: nowrap; justify-content: flex-start; font-size: 17px; }
+  .snav .nav-link { font-size: 17px; padding: 14px 24px; border-bottom: none; }
+  .snav .nav-link.active { border-bottom: none; box-shadow: inset 3px 0 0 var(--accent); }
+  .snav .dropdown-menu, .snav .dropdown-menu.dropdown-right { transform: none; }
+  .footer-in { padding: 40px 24px 28px; }
+  .footer-top.cols-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .footer-top.cols-4 { grid-template-columns: 1fr; }
+  .stab { font-size: 20px; }
+  .stab.on { font-size: 24px; }
+}
+
+/* ==========================================================================
+   ÚVOD HUDEBNÍ SEKCE (hudebni-zivot/index.html) — varianta B+C
+   ========================================================================== */
+.hz-wrap { max-width: 1312px; margin: 0 auto; padding-left: 64px; padding-right: 64px; }
+.hz-sec { padding-top: 72px; padding-bottom: 72px; }
+.hz-band { background: var(--bg-alt); }
+.hz-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
+.hz-head h2 { margin: 8px 0 14px; font-size: 40px; line-height: 1.1; font-weight: 600; }
+.hz-more { font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; white-space: nowrap; }
+.hz-more:hover { text-decoration: underline; opacity: 1; }
+.staff { display: block; height: 13px; width: 112px; background: repeating-linear-gradient(to bottom, var(--accent) 0 1px, transparent 1px 3px); opacity: .9; }
+.hz-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 2px; background: var(--bg-alt); color: #6b5636; }
+.hz-tag-a { background: var(--accent); color: #faf6f0; }
+.hz-tag-line { background: transparent; border: 1px solid var(--border-dash); }
+.ph { color: var(--text-pending); }
+
+/* Hero — tmavý, přes celou šířku. Čitelnost: tmavý přechod pod textem drží
+   kontrast bez ohledu na to, jak světlá je zrovna fotka. */
+.hz-hero { position: relative; min-height: 640px; background: var(--dark); color: #faf6f0; overflow: hidden; }
+.hz-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 40%; opacity: .62; transition: opacity .4s ease; }
+.hz-hero-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(22,19,15,.95) 0%, rgba(22,19,15,.85) 38%, rgba(22,19,15,.35) 70%, rgba(22,19,15,.15) 100%); }
+.hz-hero-link { position: absolute; inset: 0; z-index: 2; }
+.hz-hero-link:hover { opacity: 1; }
+.hz-hero-in { position: relative; display: flex; flex-direction: column; justify-content: space-evenly; gap: 16px; min-height: 640px; padding-top: 40px; padding-bottom: 40px; pointer-events: none; }
+.hz-hero-txt { max-width: 640px; display: flex; flex-direction: column; gap: 20px; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.hz-hero-title { margin: 0; font-size: 52px; line-height: 1.08; font-weight: 600; color: #faf6f0; }
+.hz-hero-link:hover ~ .hz-hero-in .hz-hero-title,
+.hz-hero-link:focus-visible ~ .hz-hero-in .hz-hero-title { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.hz-hero .staff { background: repeating-linear-gradient(to bottom, var(--accent-light) 0 1px, transparent 1px 3px); }
+.hz-meta { display: flex; flex-direction: column; gap: 14px; font-size: 22px; }
+.hz-meta div { display: flex; gap: 12px; align-items: center; }
+.hz-meta svg { width: 24px; height: 24px; flex-shrink: 0; }
+.hz-ctrl { display: flex; align-items: center; gap: 14px; position: relative; z-index: 3; pointer-events: auto; }
+.hz-arr { width: 48px; height: 48px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; background: transparent; border: 1.5px solid var(--accent); color: var(--accent); padding: 0; }
+.hz-hero .hz-arr { border-color: #faf6f0; color: #faf6f0; }
+.hz-arr:hover { background: rgba(250,246,240,.12); }
+.hz-dots { display: flex; gap: 10px; margin-left: 12px; }
+.hz-dot { width: 28px; height: 44px; border: none; background: transparent; cursor: pointer; padding: 0; display: inline-flex; align-items: center; }
+.hz-dot i { display: block; width: 100%; height: 3px; background: rgba(250,246,240,.35); }
+.hz-dot.on i { background: #faf6f0; }
+.hz-credit { position: absolute; right: 20px; bottom: 14px; z-index: 3; font-size: 11px; color: rgba(250,246,240,.6); }
+
+/* Program + kalendář */
+.hz-prog { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 48px; align-items: start; }
+.hz-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.hz-chip { min-height: 40px; padding: 9px 18px; border-radius: 20px; border: 1px solid var(--accent); color: var(--accent); background: var(--bg); font: 600 14px 'Work Sans', sans-serif; cursor: pointer; }
+.hz-chip.on { background: var(--accent); color: #faf6f0; }
+.hz-day { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 15px; flex-wrap: wrap; }
+.hz-rows { border: 1px solid var(--border); }
+.hz-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; gap: 24px; align-items: center; padding: 18px 22px; background: #fff; border-top: 1px solid var(--border-row); }
+.hz-row:first-child { border-top: none; }
+.hz-dnum { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px; font-weight: 600; line-height: 1; color: var(--accent); }
+.hz-dsub { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted-2); margin-top: 4px; }
+.hz-rtags { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+.hz-rt { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.35; }
+.hz-rm { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 6px; font-size: 14px; color: var(--text-muted-2); }
+.hz-rm b { color: var(--accent); font-weight: 600; }
+.hz-rbtn { display: inline-block; padding: 12px 22px; border: 1px solid var(--accent); color: var(--accent); background: var(--bg); border-radius: 2px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+.hz-empty { padding: 28px 22px; background: #fff; color: var(--text-pending); font-style: italic; }
+.hz-note { margin: 14px 0 0; font-size: 13px; color: var(--text-faint-2); }
+.hz-cal { background: #fff; border: 1px solid var(--border); padding: 22px; }
+.hz-cal-h { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.hz-cal-h h3 { margin: 0; font-size: 26px; color: var(--accent); font-weight: 600; }
+.hz-cal-g { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; }
+.hz-cal-w { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-faint); padding: 6px 0; }
+.hz-cd { height: 42px; border: none; background: transparent; font: 500 14px 'Work Sans', sans-serif; color: var(--text-pending); border-radius: 2px; position: relative; padding: 0; }
+.hz-cd.has { color: var(--text); font-weight: 600; cursor: pointer; background: var(--bg-alt); }
+.hz-cd.has::after { content: ''; position: absolute; left: 50%; bottom: 6px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--accent); }
+.hz-cd.past { opacity: .45; }
+.hz-cd.today { outline: 1.5px solid var(--accent); outline-offset: -1.5px; }
+.hz-cd.sel { background: var(--accent); color: #faf6f0; }
+.hz-cd.sel::after { background: #faf6f0; }
+.hz-subs { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+.hz-subs a { display: flex; align-items: center; gap: 10px; padding: 12px 22px; border: 1px solid var(--accent); color: var(--accent); background: var(--bg); border-radius: 2px; text-decoration: none; font-size: 14px; font-weight: 600; }
+
+/* Karty */
+.hz-g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.hz-g4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.hz-win { background: #fff; padding: 26px; display: flex; flex-direction: column; gap: 12px; border-top: 3px solid var(--accent); }
+.hz-win h3 { margin: 0; font-size: 25px; line-height: 1.2; font-weight: 600; }
+.hz-win p { margin: 0; font-size: 14px; color: var(--text-muted-2); line-height: 1.6; }
+.hz-comp { display: flex; flex-direction: column; gap: 10px; padding: 24px; background: var(--bg); border: 1px solid var(--border); text-decoration: none; }
+.hz-comp:hover { border-color: var(--accent); opacity: 1; }
+.hz-comp h3 { margin: 0; font-size: 23px; line-height: 1.2; font-weight: 600; }
+.hz-comp .no { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint-2); }
+.hz-comp .when { font-weight: 600; color: var(--accent); font-size: 15px; }
+.hz-comp .where { font-size: 13px; color: var(--text-muted-2); }
+.hz-ens { display: flex; flex-direction: column; background: #fff; text-decoration: none; border: 1px solid var(--border); }
+.hz-ens:hover { border-color: var(--accent); opacity: 1; }
+.hz-ens .im { aspect-ratio: 3 / 2; overflow: hidden; background: var(--border-2); }
+.hz-ens img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hz-ens .b { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+.hz-ens h3 { margin: 0; font-size: 23px; line-height: 1.15; color: var(--accent); font-weight: 600; }
+.hz-ens p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--text-muted); }
+.hz-ens small { font-size: 12px; color: var(--text-faint-2); }
+.hz-depts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; align-items: center; font-size: 14px; color: var(--text-muted-2); }
+.hz-last { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: start; }
+.hz-phgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.hz-phbox { background: var(--border-row); border: 1px dashed var(--border-dash); display: flex; align-items: center; justify-content: center; color: var(--text-pending); font-size: 14px; text-align: center; padding: 12px; aspect-ratio: 4 / 3; }
+.hz-phbox.big { grid-column: span 2; grid-row: span 2; aspect-ratio: 16 / 10; }
+.hz-venue { display: flex; flex-direction: column; gap: 6px; padding: 22px 0; border-top: 1px solid var(--border-dash); }
+.hz-venue h3 { margin: 0; font-size: 22px; font-weight: 600; }
+.hz-venue p { margin: 0; font-size: 14px; color: var(--text-muted-2); line-height: 1.5; }
+.hz-venue b { color: var(--accent); font-size: 14px; }
+.hz-eu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.hz-eu img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; display: block; border: 1px solid var(--border); }
+.hz-news { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 44px 48px; border: 1px solid var(--border); background: #fff; }
+.hz-field { display: flex; gap: 10px; flex-wrap: wrap; }
+.hz-field input { flex: 1 1 220px; min-height: 48px; border: 1px solid #c9bda9; padding: 0 14px; font: 15px 'Work Sans', sans-serif; background: var(--bg); border-radius: 2px; }
+.hz-field .btn { border: none; cursor: pointer; font-family: inherit; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.btn-line { border: 1px solid #c9bda9; color: var(--text); background: transparent; }
+
+@media (max-width: 1100px) {
+  .hz-g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hz-prog { grid-template-columns: 1fr; }
+}
+@media (max-width: 960px) {
+  .hz-wrap { padding-left: 20px; padding-right: 20px; }
+  .hz-sec { padding-top: 48px; padding-bottom: 48px; }
+  .hz-head h2 { font-size: 32px; }
+  /* Na mobilu je text přes celou šířku, proto přechod zespodu a tmavší celkově */
+  .hz-hero, .hz-hero-in { min-height: 520px; }
+  .hz-hero-img { object-position: 60% 30%; opacity: .55; }
+  .hz-hero-shade { background: linear-gradient(0deg, rgba(22,19,15,.96) 0%, rgba(22,19,15,.85) 45%, rgba(22,19,15,.45) 100%); }
+  .hz-hero-in { justify-content: flex-end; gap: 28px; }
+  .hz-hero-title { font-size: 34px; }
+  .hz-meta { font-size: 18px; }
+  .hz-g3, .hz-last, .hz-eu, .hz-news { grid-template-columns: 1fr; }
+  .hz-news { padding: 28px 20px; }
+  .hz-row { grid-template-columns: 64px minmax(0, 1fr); padding: 16px; gap: 16px; }
+  .hz-row .hz-rbtn { grid-column: 2; justify-self: start; }
+}
+@media (max-width: 600px) {
+  .hz-g4 { grid-template-columns: 1fr; }
+}
+/* Obsahové fotky se na mobilu jinde skrývají — v hudební sekci je necháváme */
+@media (max-width: 1024px) {
+  .hz-ens img, .hz-eu img { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hz-hero-img { transition: none; }
+}
+
+/* ==========================================================================
+   ÚVOD SEKCE ŠKOLY (index.html) — rozcestník a hero v pastelové žluté
+   ========================================================================== */
+.sec-skola .hero-text h1::after { content: ''; display: block; width: 72px; height: 3px; background: var(--accent); margin-top: 22px; }
+.sk-tiles { padding: 56px 64px; border-top: 1px solid var(--border); }
+.sk-tiles-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.sk-tile { display: flex; flex-direction: column; gap: 10px; padding: 28px; background: var(--bg); border: 1px solid var(--border-row); border-top: 3px solid var(--accent); text-decoration: none; }
+.sk-tile:hover { background: var(--card-bg); opacity: 1; }
+.sk-tile h2 { margin: 0; font-size: 28px; font-weight: 600; }
+.sk-tile p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+.sk-tile .more { font-size: 14px; font-weight: 600; color: var(--accent); }
+.sec-skola .about-section { background: var(--bg-alt); }
+@media (max-width: 960px) {
+  .sk-tiles { padding: 40px 24px; }
+  .sk-tiles-grid { grid-template-columns: 1fr; }
+}
+/* Atribut hidden musí vyhrát nad display u prvků hudební sekce */
+.hz-day[hidden], .hz-tag[hidden], .hz-arr[hidden] { display: none; }
+.hz-depts .hz-tag { background: var(--bg); border: 1px solid var(--border-dash); padding: 8px 14px; border-radius: 20px; font-size: 12px; }
+.hz-field .btn:disabled { opacity: .55; cursor: not-allowed; }
+@media (max-width: 1024px) { .snav .nav-link { padding: 11px 24px; } }
