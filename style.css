@@ -1328,3 +1328,16 @@ body.sec-skola { --accent-light: #ead79a; }
 @media (min-width: 1980px) {
   .snav .main-nav > .nav-logo::before { width: 60.7px; }
 }
+/* Tčko zakončené jako stužka (8. 10.): dole zářez do V hluboký 10 px;
+   výběžek o těch 10 px prodloužen, aby vrchol zářezu zůstal 14 px pod logem. */
+@media (min-width: 1025px) {
+  .snav .main-nav > .nav-logo::before {
+    height: calc(0.2575vw + 89.05px);
+    border-radius: 0;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 10px), 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 10px), 0 100%);
+  }
+}
+@media (min-width: 1980px) {
+  .snav .main-nav > .nav-logo::before { height: 94.15px; }
+}
