@@ -1103,3 +1103,6 @@ body.sec-skola { --accent-light: #ead79a; }
 /* Cormorant Garamond je i v nejtučnějším řezu světlejší než náhled — jemné zesílení tahu */
 .stab.on, .sbar .brand-title, .sbar .brand-sub { -webkit-text-stroke: 0.03em currentColor; }
 .stab:not(.on) { -webkit-text-stroke: 0.012em currentColor; }
+/* Text u loga a „Stránky školy“ bez ztučnění (8. 10.) */
+.sbar .brand-title, .sbar .brand-sub,
+.sbar > .stab:last-of-type, .sbar > .stab.on:last-of-type { font-weight: 500; -webkit-text-stroke: 0; }
