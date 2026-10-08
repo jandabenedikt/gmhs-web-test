@@ -1,0 +1,34 @@
+{
+ "popis": "Archiv hudební sekce (hudebni-zivot/archiv.html). Jeden záznam = jedna proběhlá akce. Na stránce se zobrazí jen akce, která má aspoň jeden odkaz se záznamem (vyplněné url). Akce z kalendáře sem předvyplní: python tools/archiv_z_kalendare.py. typ: s = slavnostní koncert, o = koncert oddělení, c = soutěž, v = kurz a beseda (prázdné = určí se z názvu). druh odkazu: foto, video, zvuk, program, jine. Položky s ukazka: true jsou jen ukázka vzhledu — po vložení prvních skutečných záznamů je smažte.",
+ "zaznamy": [
+  {
+   "ukazka": true,
+   "start": "",
+   "end": "",
+   "title": "[NÁZEV AKCE]",
+   "location": "[MÍSTO]",
+   "typ": "s",
+   "soubory": ["[SOUBOR / ORCHESTR]"],
+   "popis": "[KRÁTKÉ SHRNUTÍ — kdo hrál, co zaznělo]",
+   "odkazy": [
+    {"druh": "foto", "url": "", "popisek": ""},
+    {"druh": "video", "url": "", "popisek": ""},
+    {"druh": "program", "url": "", "popisek": ""}
+   ]
+  },
+  {
+   "ukazka": true,
+   "start": "",
+   "end": "",
+   "title": "[NÁZEV SOUTĚŽE]",
+   "location": "[MÍSTO]",
+   "typ": "c",
+   "soubory": [],
+   "popis": "[KRÁTKÉ SHRNUTÍ — výsledky, ocenění žáci]",
+   "odkazy": [
+    {"druh": "foto", "url": "", "popisek": ""},
+    {"druh": "zvuk", "url": "", "popisek": ""}
+   ]
+  }
+ ]
+}

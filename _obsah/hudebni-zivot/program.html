@@ -1,0 +1,21 @@
+---
+nazev: Program — Hudební život | GMHS
+popis: Program koncertů, soutěží a dalších hudebních akcí GMHS ve školním roce — kalendář a přehled všech nadcházejících akcí.
+nadrazena: Hudební život
+nadpis: Program
+uvod: [ÚVODNÍ VĚTA K PROGRAMU]
+hlava: <script src="hudba.js?v=2" defer></script>
+---
+  <!-- TYP STRÁNKY: program — blok programu (_sablony/blok-program.html) v plném
+       režimu (data-program="plny"): všechny nadcházející akce po měsících.
+       Data: data/akce.json + data/akce-plakat.json (stejná jako Kalendář akcí ve škole). -->
+  <div class="content wide hz-plny" id="program" data-program="plny">
+    <div class="eyebrow" id="hz-season">Školní rok 2026/2027</div>
+    <h2 class="sec-title">Kalendář a přehled akcí</h2>
+{{blok:program}}
+
+    <div class="hz-plny-info" id="informace">
+      <h2 class="sec-title">Informace k jednotlivým koncertům</h2>
+      <p class="ph">[INFORMACE K JEDNOTLIVÝM KONCERTŮM — doplníme: program skladeb, účinkující, vstupné, rezervace…]</p>
+    </div>
+  </div>

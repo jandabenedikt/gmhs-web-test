@@ -23,6 +23,27 @@ KDE CO UPRAVOVAT
   MENU níže           položky menu obou sekcí.
   aktuality_data.py   příspěvky do Aktualit (stránka o-nas/aktuality.html
                       i tři boxy na úvodní stránce se z nich vyrábí samy).
+  data/…              sdílená data obou sekcí: akce.json + akce-plakat.json
+                      (kalendář — čte je Kalendář akcí ve škole i Program
+                      v hudbě), archiv.json (katalog záznamů — Archiv).
+  _vzory/…            vzory nových stránek, ze kterých se kopíruje (generátor
+                      je nečte): textová stránka, stránka s programem, katalog.
+
+DVĚ SEKCE, SPOLEČNÁ DATA
+  Obě sekce (Žijeme hudbou! / Stránky školy) mají vlastní stránky ve vlastním
+  prostředí (barvy, menu, patička), i když čerpají ze stejných dat. Např.
+  Program (hudebni-zivot/program.html) a Kalendář akcí (kalendar-akci.html)
+  čtou stejná data akcí, ale každá stránka je ve své sekci. Sekce se určí
+  podle cesty (hudebni-zivot/… = hudba, jinak škola), nebo údajem „sekce“.
+
+TYPY STRÁNEK (opakovaně použitelné bloky v _sablony/blok-*.html)
+  textová stránka   jen obsah v HTML (většina stránek)
+  program           do obsahu se vloží {{blok:program}} — filtr akcí,
+                    seznam a měsíční kalendář (skript hudebni-zivot/hudba.js)
+  katalog           do obsahu se vloží {{blok:archiv}} — filtry a karty
+                    záznamů z data/archiv.json (skript hudebni-zivot/archiv.js)
+  Blok se vkládá řádkem {{blok:jmeno}} kdekoli v obsahu; odkazy v bloku
+  mohou používat {{koren}} (cesta ke kořeni webu).
 
 PRAVIDLO: vygenerované .html soubory se nikdy neupravují ručně — vždy
 _obsah/ nebo _sablony/ a pak „python build.py“. Jinak je příští build přepíše.
@@ -66,19 +87,19 @@ WEB = "https://gmhs.cz/"
 # Verze stylopisu pro všechny stránky („style.css?v=…“). Po změně style.css ji
 # zvýšit, aby prohlížeče návštěvníků nepoužily starou verzi z mezipaměti.
 # Prázdné = bez verze. Jednotlivá stránka ji může přebít údajem „verze_stylu“.
-VERZE_STYLU = "2026-10-08-15"
+VERZE_STYLU = "2026-10-08-20"
 
 # Položka menu: (popisek, odkaz, podnabídka nebo None).
 # V podnabídce: (odkaz, popisek); odkaz None = neaktivní šedý text (připravuje se).
 MENU = {
     # Žijeme hudbou! — bez rozbalovacích nabídek
     "hudba": [
-        ("Program", "hudebni-zivot/index.html#program", None),
-        ("Koncerty", "hudebni-zivot/index.html#program", None),
+        ("Program", "hudebni-zivot/program.html", None),
+        ("Koncerty", "hudebni-zivot/koncerty.html", None),
         ("Soutěže", "hudebni-zivot/poradane-souteze.html", None),
         ("Soubory a orchestry", "hudebni-zivot/orchestry-a-soubory.html", None),
         ("Mezinárodní angažmá", "hudebni-zivot/projekty-eu.html", None),
-        ("Archiv", "galerie.html", None),
+        ("Archiv", "hudebni-zivot/archiv.html", None),
     ],
     # Stránky školy — zatím s rozbalovacími nabídkami
     "skola": [
@@ -125,7 +146,7 @@ LOCK_SVG = ('<svg class="nav-lock-icon" width="16" height="16" viewBox="0 0 24 2
 
 def sekce_pro(cesta):
     """Do které sekce stránka patří: 'hudba', nebo 'skola'."""
-    if cesta.startswith("hudebni-zivot/") or cesta == "galerie.html":
+    if cesta.startswith("hudebni-zivot/"):
         return "hudba"
     return "skola"
 
@@ -187,15 +208,29 @@ def menu_html(koren, cesta, sekce):
     return "\n".join(parts)
 
 
+# Horní lišta sekcí: nadpis sekce uprostřed, vlaječka s logem na kraji
+# (hudba vlevo, škola vpravo) je odkaz do druhé sekce; vedle ní krátký popisek
+# se šipkou. Přechod mezi sekcemi animuje prechod.js.
+LISTA = {
+    "hudba": {"nadpis": "Hudební akce GMHS: Přijďte si nás poslechnout!",
+              "tip": "← O škole", "cil": SKOLA_HOME, "cil_popis": "Přejít na stránky o škole"},
+    "skola": {"nadpis": "Gymnázium a Hudební škola hlavního města Prahy, ZUŠ",
+              "tip": "Hudební akce →", "cil": HUDBA_HOME, "cil_popis": "Přejít na hudební akce GMHS"},
+}
+
+
 def hlavicka_html(koren, cesta, sekce):
-    hudba = sekce == "hudba"
+    druha = "skola" if sekce == "hudba" else "hudba"
+    ja, ona = LISTA[sekce], LISTA[druha]
     return dosad(sablona("hlavicka.html"), {
-        "koren": koren,
-        "trida_hudba": "stab on" if hudba else "stab",
-        "trida_skola": "stab" if hudba else "stab on",
-        "aktivni_hudba": ' aria-current="true"' if hudba else "",
-        "aktivni_skola": "" if hudba else ' aria-current="true"',
+        "cil": koren + ja["cil"],
+        "cil_popis": ja["cil_popis"],
+        "tip": ja["tip"],
+        "nadpis": ja["nadpis"],
         "menu": menu_html(koren, cesta, sekce),
+        "druha": dosad(sablona("hlavicka-druha.html"), {
+            "sekce": druha, "tip": ona["tip"], "nadpis": ona["nadpis"],
+            "menu": menu_html(koren, "", druha)}),
     })
 
 
@@ -310,6 +345,9 @@ def vyrob_stranku(cesta, udaje, obsah):
         a = obsah.index("<!-- AKTUALITY:START -->") + len("<!-- AKTUALITY:START -->")
         b = obsah.index("<!-- AKTUALITY:END -->")
         obsah = obsah[:a] + "\n" + aktuality_boxes_html(koren) + "\n" + obsah[b:]
+    # opakovaně použitelné bloky: řádek {{blok:jmeno}} → _sablony/blok-jmeno.html
+    obsah = re.sub(r"\{\{blok:([\w-]+)\}\}",
+                   lambda m: dosad(sablona(f"blok-{m.group(1)}.html"), {"koren": koren}), obsah)
 
     if udaje.get("zahlavi") == "ne":
         zahlavi = ""

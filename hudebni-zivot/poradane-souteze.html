@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pořádané soutěže — Hudební život | GMHS</title>
 <meta name="description" content="Hudební soutěže pořádané nebo spolupořádané GMHS.">
-<link rel="stylesheet" href="../style.css?v=2026-10-08-15">
+<link rel="stylesheet" href="../style.css?v=2026-10-08-20">
 <script src="../nav.js" defer></script>
+<script src="../prechod.js" defer></script>
 <link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" href="../favicon-32x32.png" type="image/png" sizes="32x32">
 <link rel="icon" href="../favicon-16x16.png" type="image/png" sizes="16x16">
@@ -49,31 +50,87 @@
 </head>
 <body class="sec-hudba">
   <header class="site-header">
-    <div class="sbar">
-      <div class="brand">
-        <img class="brand-logo" src="../images/logo.png" alt="Logo GMHS">
-        <span class="brand-text">
-          <span class="brand-title display">Gymnázium a Hudební škola</span>
-          <span class="brand-sub">hlavního města Prahy, ZUŠ</span>
-        </span>
-      </div>
-      <a class="stab on" href="../hudebni-zivot/index.html" aria-current="true">Žijeme hudbou!</a>
-      <a class="stab" href="../index.html">Stránky školy</a>
+    <div class="lista">
+      <a class="vlajka" href="../index.html" data-prechod aria-label="Přejít na stránky o škole"></a>
+      <a class="lista-tip" href="../index.html" data-prechod>← O škole</a>
+      <div class="lista-nadpis display">Hudební akce GMHS: Přijďte si nás poslechnout!</div>
     </div>
     <div class="snav">
       <nav class="main-nav" aria-label="Menu – Žijeme hudbou!">
         <div class="nav-half">
-        <a class="nav-link" href="../hudebni-zivot/index.html#program">Program</a>
-        <a class="nav-link" href="../hudebni-zivot/index.html#program">Koncerty</a>
+        <a class="nav-link" href="../hudebni-zivot/program.html">Program</a>
+        <a class="nav-link" href="../hudebni-zivot/koncerty.html">Koncerty</a>
         <a class="nav-link active" href="../hudebni-zivot/poradane-souteze.html" aria-current="page">Soutěže</a>
         </div>
         <span class="nav-logo" aria-hidden="true"></span>
         <div class="nav-half">
         <a class="nav-link" href="../hudebni-zivot/orchestry-a-soubory.html">Soubory a orchestry</a>
         <a class="nav-link" href="../hudebni-zivot/projekty-eu.html">Mezinárodní angažmá</a>
-        <a class="nav-link" href="../galerie.html">Archiv</a>
+        <a class="nav-link" href="../hudebni-zivot/archiv.html">Archiv</a>
         </div>
       </nav>
+    </div>
+    <!-- záhlaví druhé sekce — skryté, ukáže se jen při animovaném přechodu (prechod.js) -->
+    <div class="hlavicka-druha sec-skola" aria-hidden="true" inert>
+      <div class="lista">
+        <span class="vlajka"></span>
+        <span class="lista-tip">Hudební akce →</span>
+        <div class="lista-nadpis display">Gymnázium a Hudební škola hlavního města Prahy, ZUŠ</div>
+      </div>
+      <div class="snav">
+      <nav class="main-nav" aria-label="Menu – Stránky školy">
+        <div class="nav-half">
+        <div class="nav-item">
+          <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">O nás</button>
+          <div class="dropdown-menu">
+            <a href="../o-nas/aktuality.html">Aktuality</a>
+            <a href="../o-nas/kontakt.html">Kontakt</a>
+            <a href="../o-nas/personal.html">Personál školy</a>
+            <a href="../o-nas/srp-gmhs.html">Sdružení rodičů a přátel GMHS</a>
+            <a href="../o-nas/historie.html">Historie</a>
+            <a href="../o-nas/nasi-partnere.html">Naši partneři</a>
+            <a href="../o-nas/uredni-deska.html">Úřední deska</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Gymnázium</button>
+          <div class="dropdown-menu">
+            <a href="../gymnazium/jak-funguje-studium.html">Jak funguje studium na gymnáziu</a>
+            <a href="../gymnazium/prijimaci-zkousky.html">Přijímací zkoušky</a>
+            <a href="../gymnazium/den-otevrenych-dveri.html">Den otevřených dveří</a>
+            <a href="../gymnazium/maturita.html">Maturita</a>
+            <a href="../gymnazium/cambridge.html">Cambridge English Preparation Centre</a>
+            <a href="../gymnazium/skolska-rada.html">Školská rada gymnázia</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false">Hudební škola</button>
+          <div class="dropdown-menu">
+            <a href="../hudebni-skola/jak-funguje-studium.html">Jak funguje studium na HŠ</a>
+            <a href="../hudebni-skola/hudebni-nauka-phv.html">Hudební nauka a přípravná hudební výchova</a>
+            <a href="../hudebni-skola/prijimaci-zkousky-uplata.html">Přijímací zkoušky a úplata</a>
+            <a href="https://klasifikace.jphsw.cz/application/default?hash=6da9003b743b65f4c0ccd295cc484e57" target="_blank" rel="noopener">Přihláška ke studiu</a>
+            <a href="../hudebni-skola/faq.html">Často kladené dotazy</a>
+          </div>
+        </div>
+        </div>
+        <span class="nav-logo" aria-hidden="true"></span>
+        <div class="nav-half">
+        <a class="nav-link" href="../galerie.html">Galerie</a>
+        <a class="nav-link" href="../kalendar-akci.html">Kalendář akcí</a>
+        <div class="nav-item nav-lock">
+          <button type="button" class="nav-link" aria-haspopup="true" aria-expanded="false"><svg class="nav-lock-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Intranet</button>
+          <div class="dropdown-menu dropdown-right">
+            <a href="https://gmhs.bakalari.cz/login" target="_blank" rel="noopener">Bakaláři</a>
+            <a href="https://klasifikace.jphsw.cz/?hash=6da9003b743b65f4c0ccd295cc484e57" target="_blank" rel="noopener">Klasifikace</a>
+            <span class="dd-soon" aria-disabled="true">Žák GM</span>
+            <span class="dd-soon" aria-disabled="true">Žák HŠ</span>
+            <span class="dd-soon" aria-disabled="true">Hudební pedagog</span>
+          </div>
+        </div>
+        </div>
+      </nav>
+      </div>
     </div>
   </header>
 
@@ -117,12 +174,13 @@
       </div>
       <div class="footer-col">
         <h2 class="footer-h">Žijeme hudbou!</h2>
-        <a href="../hudebni-zivot/index.html#program">Program</a>
+        <a href="../hudebni-zivot/program.html">Program</a>
+        <a href="../hudebni-zivot/koncerty.html">Koncerty</a>
         <a href="../hudebni-zivot/poradane-souteze.html">Soutěže</a>
         <a href="../hudebni-zivot/orchestry-a-soubory.html">Soubory a orchestry</a>
         <a href="../hudebni-zivot/hudebni-uspechy.html">Hudební úspěchy</a>
         <a href="../hudebni-zivot/projekty-eu.html">Projekty EU</a>
-        <a href="../galerie.html">Galerie</a>
+        <a href="../hudebni-zivot/archiv.html">Archiv</a>
       </div>
       <div class="footer-social">
         <a class="social-icon" href="https://www.instagram.com/gmhs_official/" target="_blank" rel="noopener" aria-label="Instagram">

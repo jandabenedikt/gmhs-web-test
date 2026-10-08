@@ -1,16 +1,11 @@
   <header class="site-header">
-    <div class="sbar">
-      <div class="brand">
-        <img class="brand-logo" src="{{koren}}images/logo.png" alt="Logo GMHS">
-        <span class="brand-text">
-          <span class="brand-title display">Gymnázium a Hudební škola</span>
-          <span class="brand-sub">hlavního města Prahy, ZUŠ</span>
-        </span>
-      </div>
-      <a class="{{trida_hudba}}" href="{{koren}}hudebni-zivot/index.html"{{aktivni_hudba}}>Žijeme hudbou!</a>
-      <a class="{{trida_skola}}" href="{{koren}}index.html"{{aktivni_skola}}>Stránky školy</a>
+    <div class="lista">
+      <a class="vlajka" href="{{cil}}" data-prechod aria-label="{{cil_popis}}"></a>
+      <a class="lista-tip" href="{{cil}}" data-prechod>{{tip}}</a>
+      <div class="lista-nadpis display">{{nadpis}}</div>
     </div>
     <div class="snav">
 {{menu}}
     </div>
+{{druha}}
   </header>

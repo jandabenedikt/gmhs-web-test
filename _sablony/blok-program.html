@@ -1,0 +1,25 @@
+      <div class="hz-prog">
+        <div>
+          <div class="hz-chips" role="group" aria-label="Typ akce" id="hz-chips"></div>
+          <div class="hz-day" id="hz-day" hidden><span>Akce dne <b id="hz-day-label"></b></span><button type="button" class="hz-chip" id="hz-day-clear">Zrušit výběr dne ×</button></div>
+          <div class="hz-rows" id="hz-rows"><div class="hz-empty">Program se načítá…</div></div>
+          <p class="hz-note" id="hz-count"></p>
+        </div>
+        <aside aria-label="Kalendář programu">
+          <div class="hz-cal">
+            <div class="hz-cal-h">
+              <button class="hz-arr" type="button" id="hz-mprev" aria-label="Předchozí měsíc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+              <h3 class="display" id="hz-month" aria-live="polite"></h3>
+              <button class="hz-arr" type="button" id="hz-mnext" aria-label="Další měsíc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
+            </div>
+            <div class="hz-cal-g" id="hz-cal">
+              <div class="hz-cal-w">po</div><div class="hz-cal-w">út</div><div class="hz-cal-w">st</div><div class="hz-cal-w">čt</div><div class="hz-cal-w">pá</div><div class="hz-cal-w">so</div><div class="hz-cal-w">ne</div>
+            </div>
+            <p class="hz-note">Dny s tečkou mají v programu akci — kliknutím zobrazíte program daného dne.</p>
+          </div>
+          <div class="hz-subs">
+            <a href="https://calendar.google.com/calendar/r?cid=webcal%3A%2F%2Fgmhs.cz%2Fdata%2Fkalendar.ics" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"></rect><path d="M3 10h18M12 13v5M9.5 15.5h5"></path></svg>Přidat do Google Kalendáře</a>
+            <a href="webcal://gmhs.cz/data/kalendar.ics"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"></rect><path d="M3 10h18M12 13v5M9.5 15.5h5"></path></svg>Přidat do Apple / Outlook</a>
+          </div>
+        </aside>
+      </div>

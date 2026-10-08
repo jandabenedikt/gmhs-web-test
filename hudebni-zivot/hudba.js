@@ -1,7 +1,11 @@
-// Úvodní stránka sekce „Žijeme hudbou!“ (hudebni-zivot/index.html)
-//  • karusel nejbližších akcí v hero
-//  • aktuální program s filtrem podle typu + měsíční kalendář (klik na den = program dne)
-//  • odpočet do nejbližší pořádané soutěže, počty akcí na jednotlivých místech
+// Sekce „Žijeme hudbou!“ — úvodní stránka (hudebni-zivot/index.html)
+// a stránka Program (hudebni-zivot/program.html). Na obou je blok programu
+// (_sablony/blok-program.html): filtr podle typu + seznam + měsíční kalendář.
+//  • úvodní stránka: karusel nejbližších akcí v hero, 6 nejbližších akcí,
+//    odpočet do nejbližší soutěže, počty akcí na jednotlivých místech
+//  • Program (data-program="plny"): všechny nadcházející akce po měsících;
+//    adresa program.html?den=2026-10-16 rovnou vybere den, ?typ=c typ akce
+// Části, které na stránce nejsou, se přeskočí.
 //
 // Data: stejné zdroje jako stránka Kalendář akcí (kalendar.js) —
 //   ../data/akce.json (Klasifikace, plní GitHub Actions) + ../data/akce-plakat.json (plakát).
@@ -107,8 +111,6 @@
   var WD = ['ne', 'po', 'út', 'st', 'čt', 'pá', 'so'];
   var MN = ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'];
   var MN_GEN = ['ledna', 'února', 'března', 'dubna', 'května', 'června', 'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'];
-  // Kotvy měsíců na stránce Kalendář akcí (stejné jako v kalendar.js)
-  var MONTH_ID = ['leden', 'unor', 'brezen', 'duben', 'kveten', 'cerven', '', '', 'zari', 'rijen', 'listopad', 'prosinec'];
 
   // Do hudebního programu nepatří akce školy jako instituce (patří do sekce školy).
   var NOT_MUSIC = /den otevřených dveří|ples|zápis|přijímací|třídní schůzk|prázdnin|ředitelské volno/i;
@@ -147,6 +149,8 @@
 
   var TODAY = iso(new Date());
   var state = { events: [], filter: 'all', sel: null, cy: 0, cm: 0, slide: 0 };
+  var FULL = false; // plný program (stránka Program) — nastaví se po načtení stránky
+  function $(id) { return document.getElementById(id); }
 
   function match(e) {
     if (state.filter === 'all') return true;
@@ -163,31 +167,42 @@
     }).join('');
   }
 
+  // Podrobnosti vedou na stránku Program v hudební sekci (vybere den akce).
   function detailHref(e) {
-    var m = pd(e.start).getMonth();
-    return '../kalendar-akci.html' + (MONTH_ID[m] ? '#' + MONTH_ID[m] : '');
+    return 'program.html?den=' + e.start;
   }
 
   function renderRows() {
     var upcoming = state.events.filter(function (e) { return e.end >= TODAY && match(e); });
     var list = state.sel
       ? state.events.filter(function (e) { return e.start <= state.sel && e.end >= state.sel && match(e); })
-      : upcoming.slice(0, 6);
+      : (FULL ? upcoming : upcoming.slice(0, 6));
     var rows = document.getElementById('hz-rows');
+    var lastMonth = '';
     if (!list.length) {
       rows.innerHTML = '<div class="hz-empty">V tomto výběru nejsou naplánované žádné akce.</div>';
     } else {
       rows.innerHTML = list.map(function (e) {
+        // plný program: nadpis měsíce před první akcí měsíce
+        var head = '';
+        if (FULL && !state.sel) {
+          var mk = e.start.slice(0, 7);
+          if (mk !== lastMonth) {
+            lastMonth = mk;
+            var md = pd(e.start), mn = MN[md.getMonth()];
+            head = '<h3 class="hz-mhead display">' + mn[0].toUpperCase() + mn.slice(1) + ' ' + md.getFullYear() + '</h3>';
+          }
+        }
         var a = pd(e.start), b = pd(e.end), multi = e.end !== e.start;
         var day = multi ? a.getDate() + '.–' + b.getDate() + '.' : a.getDate() + '.';
         var sub = (multi ? WD[a.getDay()] + '–' + WD[b.getDay()] : WD[a.getDay()]) + ' · ' + MN[a.getMonth()].slice(0, 3);
-        return '<article class="hz-row">' +
+        return head + '<article class="hz-row">' +
           '<div><div class="hz-dnum">' + day + '</div><div class="hz-dsub">' + sub + '</div></div>' +
           '<div><div class="hz-rtags"><span class="hz-tag">' + TYP[e.typ] + '</span>' +
           (inSchool(e.place) ? '' : '<span class="hz-tag hz-tag-line">Mimo školu</span>') + '</div>' +
           '<h3 class="hz-rt">' + esc(e.title) + '</h3>' +
           '<div class="hz-rm"><b>' + (e.time || 'Celý den') + '</b><span>' + esc(e.place) + '</span></div></div>' +
-          '<a class="hz-rbtn" href="' + detailHref(e) + '" aria-label="Podrobnosti: ' + esc(e.title) + '">Podrobnosti</a>' +
+          (FULL ? '' : '<a class="hz-rbtn" href="' + detailHref(e) + '" aria-label="Podrobnosti: ' + esc(e.title) + '">Podrobnosti</a>') +
           '</article>';
       }).join('');
     }
@@ -199,8 +214,9 @@
     } else {
       dayBox.hidden = true;
     }
-    document.getElementById('hz-count').textContent = state.sel ? '' :
-      'Zobrazeno ' + Math.min(6, upcoming.length) + ' z ' + upcoming.length + ' nadcházejících akcí. Data z kalendáře školy (Klasifikace) a z plakátu akcí.';
+    $('hz-count').textContent = state.sel ? '' : FULL
+      ? 'Nadcházejících akcí ve výběru: ' + upcoming.length + '. Data z kalendáře školy (Klasifikace) a z plakátu akcí.'
+      : 'Zobrazeno ' + Math.min(6, upcoming.length) + ' z ' + upcoming.length + ' nadcházejících akcí. Data z kalendáře školy (Klasifikace) a z plakátu akcí.';
   }
 
   // --------------------------------------------------------------- kalendář
@@ -240,6 +256,7 @@
     return up.length ? up : SLIDES;
   }
   function renderHero() {
+    if (!$('hz-img')) return;
     var slides = heroSlides();
     var s = slides[state.slide % slides.length];
     var img = document.getElementById('hz-img');
@@ -284,7 +301,7 @@
       el.textContent = n === 0 ? 'Letos zatím bez akce v programu' :
         (n === 1 ? '1 akce ' : n + (n >= 2 && n <= 4 ? ' akce ' : ' akcí ')) + label;
     });
-    document.getElementById('hz-season').textContent = 'Školní rok ' + b.y + '/' + (b.y + 1);
+    if ($('hz-season')) $('hz-season').textContent = 'Školní rok ' + b.y + '/' + (b.y + 1);
   }
 
   function renderAll() { renderChips(); renderRows(); renderCal(); renderExtras(); }
@@ -294,6 +311,14 @@
     state.events = events.filter(function (e) { return e.title && !NOT_MUSIC.test(e.title); })
       .sort(function (a, b) { return (a.start + (a.time.length < 5 ? '0' : '') + a.time).localeCompare(b.start + (b.time.length < 5 ? '0' : '') + b.time); });
     var now = new Date(), b = seasonBounds(), idx = now.getFullYear() * 12 + now.getMonth();
+    // výběr z adresy: ?den=RRRR-MM-DD (vybraný den), ?typ=s|o|c|v|mimo (filtr)
+    var q = new URLSearchParams(location.search);
+    var den = q.get('den'), typ = q.get('typ');
+    if (typ && CHIPS.some(function (c) { return c[0] === typ; })) state.filter = typ;
+    if (den && /^\d{4}-\d{2}-\d{2}$/.test(den)) {
+      state.sel = den;
+      idx = Number(den.slice(0, 4)) * 12 + Number(den.slice(5, 7)) - 1;
+    }
     if (idx < b.min || idx > b.max) idx = b.min;
     state.cy = Math.floor(idx / 12); state.cm = idx % 12;
     renderAll();
@@ -321,18 +346,22 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    renderHero();
+    if (!$('hz-rows')) return; // stránka bez bloku programu
+    FULL = !!document.querySelector('[data-program="plny"]');
 
-    document.getElementById('hz-prev').addEventListener('click', function () {
-      var n = heroSlides().length; state.slide = (state.slide + n - 1) % n; renderHero();
-    });
-    document.getElementById('hz-next').addEventListener('click', function () {
-      state.slide = (state.slide + 1) % heroSlides().length; renderHero();
-    });
-    document.getElementById('hz-dots').addEventListener('click', function (e) {
-      var b = e.target.closest('.hz-dot'); if (!b) return;
-      state.slide = Number(b.getAttribute('data-i')); renderHero();
-    });
+    if ($('hz-img')) {
+      renderHero();
+      $('hz-prev').addEventListener('click', function () {
+        var n = heroSlides().length; state.slide = (state.slide + n - 1) % n; renderHero();
+      });
+      $('hz-next').addEventListener('click', function () {
+        state.slide = (state.slide + 1) % heroSlides().length; renderHero();
+      });
+      $('hz-dots').addEventListener('click', function (e) {
+        var b = e.target.closest('.hz-dot'); if (!b) return;
+        state.slide = Number(b.getAttribute('data-i')); renderHero();
+      });
+    }
     document.getElementById('hz-chips').addEventListener('click', function (e) {
       var b = e.target.closest('.hz-chip'); if (!b) return;
       state.filter = b.getAttribute('data-f'); state.sel = null; renderAll();

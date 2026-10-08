@@ -4,13 +4,13 @@ popis: Program koncertů a soutěží Gymnázia a Hudební školy hl. m. Prahy, 
 zahlavi: ne
 obal: style="width:auto; max-width:none;"
 adresa: https://gmhs.cz/hudebni-zivot/
-hlava: <script src="hudba.js?v=1" defer></script>
+hlava: <script src="hudba.js?v=2" defer></script>
 ---
   <!-- HERO: karusel nejbližších akcí (varianta B+C — tmavý, přes celou šířku) -->
   <section class="hz-hero" aria-roledescription="karusel" aria-label="Nejbližší akce">
     <img class="hz-hero-img" id="hz-img" src="../images/orchestr-komorni.jpg" alt="Komorní orchestr Hudební školy GMHS">
     <div class="hz-hero-shade"></div>
-    <a class="hz-hero-link" id="hz-link" href="../kalendar-akci.html#rijen" aria-label="Podrobnosti o akci: XXIV. ročník Písňové soutěže Bohuslava Martinů"></a>
+    <a class="hz-hero-link" id="hz-link" href="program.html?den=2026-10-16" aria-label="Podrobnosti o akci: XXIV. ročník Písňové soutěže Bohuslava Martinů"></a>
     <div class="hz-wrap hz-hero-in">
       <div class="hz-hero-txt" aria-live="polite">
         <h1 class="display hz-hero-title" id="hz-title">XXIV. ročník Písňové soutěže Bohuslava Martinů</h1>
@@ -33,33 +33,9 @@ hlava: <script src="hudba.js?v=1" defer></script>
     <div class="hz-wrap">
       <div class="hz-head">
         <div><div class="eyebrow" id="hz-season">Školní rok 2026/2027</div><h2 class="display">Aktuální program</h2><span class="staff"></span></div>
-        <a class="hz-more" href="../kalendar-akci.html">Celý program a kalendář →</a>
+        <a class="hz-more" href="program.html">Celý program a kalendář →</a>
       </div>
-      <div class="hz-prog">
-        <div>
-          <div class="hz-chips" role="group" aria-label="Typ akce" id="hz-chips"></div>
-          <div class="hz-day" id="hz-day" hidden><span>Akce dne <b id="hz-day-label"></b></span><button type="button" class="hz-chip" id="hz-day-clear">Zrušit výběr dne ×</button></div>
-          <div class="hz-rows" id="hz-rows"><div class="hz-empty">Program se načítá…</div></div>
-          <p class="hz-note" id="hz-count"></p>
-        </div>
-        <aside aria-label="Kalendář programu">
-          <div class="hz-cal">
-            <div class="hz-cal-h">
-              <button class="hz-arr" type="button" id="hz-mprev" aria-label="Předchozí měsíc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
-              <h3 class="display" id="hz-month" aria-live="polite"></h3>
-              <button class="hz-arr" type="button" id="hz-mnext" aria-label="Další měsíc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
-            </div>
-            <div class="hz-cal-g" id="hz-cal">
-              <div class="hz-cal-w">po</div><div class="hz-cal-w">út</div><div class="hz-cal-w">st</div><div class="hz-cal-w">čt</div><div class="hz-cal-w">pá</div><div class="hz-cal-w">so</div><div class="hz-cal-w">ne</div>
-            </div>
-            <p class="hz-note">Dny s tečkou mají v programu akci — kliknutím zobrazíte program daného dne.</p>
-          </div>
-          <div class="hz-subs">
-            <a href="https://calendar.google.com/calendar/r?cid=webcal%3A%2F%2Fgmhs.cz%2Fdata%2Fkalendar.ics" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"></rect><path d="M3 10h18M12 13v5M9.5 15.5h5"></path></svg>Přidat do Google Kalendáře</a>
-            <a href="webcal://gmhs.cz/data/kalendar.ics"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"></rect><path d="M3 10h18M12 13v5M9.5 15.5h5"></path></svg>Přidat do Apple / Outlook</a>
-          </div>
-        </aside>
-      </div>
+{{blok:program}}
     </div>
   </section>
 
@@ -181,7 +157,7 @@ hlava: <script src="hudba.js?v=1" defer></script>
       <div class="hz-last">
         <div style="display:flex; flex-direction:column; gap:16px;">
           <p class="ph" style="margin:0; font-size:16px; line-height:1.75;">[KRÁTKÉ SHRNUTÍ AKCE – kdo hrál, co zaznělo, 2–3 věty. Po akci se sem automaticky přesune záznam z programu a doplní se fotky.]</p>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-solid" href="../galerie.html">Celá fotogalerie</a><a class="btn btn-line" href="../o-nas/aktuality.html#pocta-antoninu-dvorakovi">Aktualita o koncertu</a></div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;"><a class="btn btn-solid" href="archiv.html">Archiv záznamů</a><a class="btn btn-line" href="../o-nas/aktuality.html#pocta-antoninu-dvorakovi">Aktualita o koncertu</a></div>
         </div>
         <div class="hz-phgrid">
           <div class="hz-phbox big">[VIDEO NEBO HLAVNÍ FOTO Z AKCE]</div>
