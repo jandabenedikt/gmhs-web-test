@@ -3,9 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+/* přechod mezi sekcemi (prechod.js): nová stránka se zapojí do animace prohlížeče */
+(function(){try{var d=sessionStorage.getItem('gmhs-prechod');sessionStorage.removeItem('gmhs-prechod');
+if(!d||!matchMedia('(min-width: 1025px)').matches)return;var h=document.documentElement;h.classList.add('prechod-'+d);
+var st=document.createElement('style');st.textContent='@view-transition{navigation:auto}';document.head.appendChild(st);
+function konec(){h.classList.remove('prechod-'+d);h.style.removeProperty('--vt-draha');st.remove();}
+addEventListener('pagereveal',function(e){h.style.setProperty('--vt-draha',(h.clientWidth-49)+'px');if(e.viewTransition){e.viewTransition.finished.then(konec,konec);}else konec();},{once:true});
+setTimeout(konec,3000);}catch(e){}})();
+</script>
 <title>Orchestry a soubory — Hudební život | GMHS</title>
 <meta name="description" content="Orchestry a soubory Gymnázia a Hudební školy hl. m. Prahy.">
-<link rel="stylesheet" href="../style.css?v=2026-10-08-20">
+<link rel="stylesheet" href="../style.css?v=2026-10-08-24">
 <script src="../nav.js" defer></script>
 <script src="../prechod.js" defer></script>
 <link rel="icon" href="../favicon.ico" sizes="any">
@@ -49,12 +58,14 @@
 </script>
 </head>
 <body class="sec-hudba">
+<div class="opona" aria-hidden="true"></div>
   <header class="site-header">
     <div class="lista">
       <a class="vlajka" href="../index.html" data-prechod aria-label="Přejít na stránky o škole"></a>
       <a class="lista-tip" href="../index.html" data-prechod>← O škole</a>
       <div class="lista-nadpis display">Hudební akce GMHS: Přijďte si nás poslechnout!</div>
     </div>
+    <div class="vlajka-stin" aria-hidden="true"><span></span></div>
     <div class="snav">
       <nav class="main-nav" aria-label="Menu – Žijeme hudbou!">
         <div class="nav-half">

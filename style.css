@@ -1639,3 +1639,73 @@ a.lista-tip:hover, a.vlajka:focus-visible + .lista-tip { text-decoration: underl
   .lista-tip { position: static; flex: none; padding: 0 10px; font-size: 13px; }
   .lista-nadpis { flex: 1 1 auto; padding: 6px 12px; font-size: 16px; }
 }
+
+/* ===== Přechod mezi sekcemi s oponou přes celou stránku (8. 10.) =====
+   Při najetí myší na vlaječku z ní dolů přes celou výšku okna vybíhá „stín“
+   (.vlajka-stin) — pruh šířky vlaječky v jejím tónu. Po kliknutí se vlaječka
+   i stín přebarví do tónu druhé sekce a pak spolu přejedou na opačnou stranu; stín
+   funguje jako guma/opona: za ním je už nová stránka.
+   Prohlížeče s přechody mezi stránkami: stará stránka stojí, nová se odkrývá
+   (clip-path na ::view-transition-new(root)), vlaječka a stín se plynule
+   přesunou na místo, kde jsou na nové stránce (.vlajka, .opona).
+   Řídí prechod.js + skript v <head> (šablona stranka.html). */
+.vlajka-stin, .opona { display: none; }
+@media (min-width: 1025px) {
+  .vlajka-stin {
+    display: block;
+    position: absolute;
+    z-index: 49;
+    top: 0;
+    left: var(--vl-l);
+    right: var(--vl-r);
+    width: 49px;
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .25s ease;
+  }
+  .vlajka-stin > span { display: block; width: 100%; height: 100%; background: color-mix(in srgb, var(--bar-dark) 50%, transparent); }
+  .site-header:has(> .lista > a[data-prechod]:hover) > .vlajka-stin,
+  .site-header:has(> .lista > a[data-prechod]:focus-visible) > .vlajka-stin,
+  html.prechod-ven .vlajka-stin,
+  .vlajka-stin.bezi { opacity: 1; }
+  html.prechod-ven .vlajka-stin { view-transition-name: opona; }
+}
+html.prechod-vpravo .opona, html.prechod-vlevo .opona {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: var(--vl-l);
+  right: var(--vl-r);
+  z-index: 20;
+  width: 49px;
+  height: 100vh;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--bar-dark) 50%, transparent);
+  view-transition-name: opona;
+}
+html.prechod-ven .site-header > .lista > .vlajka,
+html.prechod-vpravo .site-header > .lista > .vlajka,
+html.prechod-vlevo .site-header > .lista > .vlajka { view-transition-name: vlajka; }
+@keyframes opona-vpravo { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes opona-vlevo { from { clip-path: inset(0 0 0 100%); } to { clip-path: inset(0 0 0 0); } }
+html.prechod-vpravo::view-transition-old(root),
+html.prechod-vlevo::view-transition-old(root) { animation: none; mix-blend-mode: normal; }
+html.prechod-vpravo::view-transition-new(root) { animation: opona-vpravo 720ms cubic-bezier(.65, 0, .35, 1) both; mix-blend-mode: normal; }
+html.prechod-vlevo::view-transition-new(root) { animation: opona-vlevo 720ms cubic-bezier(.65, 0, .35, 1) both; mix-blend-mode: normal; }
+/* vlaječka a stín jedou vlastní animací (ne výchozí prohlížeče), aby začaly
+   přesně současně s odkrýváním stránky; --vt-draha = šířka okna − vlaječka */
+@keyframes vl-vpravo { from { transform: translateX(0); } to { transform: translateX(var(--vt-draha, calc(100vw - 49px))); } }
+@keyframes vl-vlevo { from { transform: translateX(var(--vt-draha, calc(100vw - 49px))); } to { transform: translateX(0); } }
+html.prechod-vpravo::view-transition-group(vlajka),
+html.prechod-vpravo::view-transition-group(opona) { animation: vl-vpravo 720ms cubic-bezier(.65, 0, .35, 1) both; }
+html.prechod-vlevo::view-transition-group(vlajka),
+html.prechod-vlevo::view-transition-group(opona) { animation: vl-vlevo 720ms cubic-bezier(.65, 0, .35, 1) both; }
+html.prechod-vpravo::view-transition-old(vlajka),
+html.prechod-vlevo::view-transition-old(vlajka),
+html.prechod-vpravo::view-transition-new(vlajka),
+html.prechod-vlevo::view-transition-new(vlajka),
+html.prechod-vpravo::view-transition-old(opona),
+html.prechod-vlevo::view-transition-old(opona),
+html.prechod-vpravo::view-transition-new(opona),
+html.prechod-vlevo::view-transition-new(opona) { animation-duration: 720ms; }
