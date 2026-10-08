@@ -1341,3 +1341,71 @@ body.sec-skola { --accent-light: #ead79a; }
 @media (min-width: 1980px) {
   .snav .main-nav > .nav-logo::before { height: 94.15px; }
 }
+/* Menší horní lišta (cca o 15 %) a o kousek nižší pruh menu (8. 10. ráno). */
+@media (min-width: 1025px) {
+  .sbar { min-height: 50px; }
+  .sbar > .brand { padding-top: 2px; padding-bottom: 2px; }
+  .sbar .brand-title, .sbar .brand-sub { font-size: min(calc(1.411vw - 2.38px), 25.5px); }
+  .stab { font-size: 21px; }
+  .stab.on { font-size: 29px; }
+  .snav .main-nav, .snav .nav-link { font-size: 16px; }
+  .snav .nav-link { padding-top: 10px; padding-bottom: 10px; }
+}
+@media (max-width: 1024px) {
+  .sbar { min-height: 0; }
+  .sbar > .brand { padding-top: 5px; padding-bottom: 5px; }
+  .sbar .brand-title, .sbar .brand-sub { font-size: 13px; line-height: 1.4; }
+  .sbar .brand-logo { height: 31px; }
+  .stab { font-size: 16px; min-height: 36px; }
+  .stab.on { font-size: 19px; }
+  .snav { min-height: 42px; }
+  .snav .nav-toggle { height: 36px; }
+}
+/* Tčko přepočítané na nižší lištu: logo dál 14 px pod účařím názvu školy,
+   vrchol zářezu stužky 14 px pod logem. */
+@media (min-width: 1025px) {
+  .nav-logo::after { top: calc(0.403vw - 10.64px); }
+  .snav .main-nav > .nav-logo::before { height: calc(0.1455vw + 95.31px); }
+}
+@media (min-width: 1980px) {
+  .nav-logo::after { top: -2.66px; }
+  .snav .main-nav > .nav-logo::before { height: 98.19px; }
+}
+/* Desktop (8. 10.): prostřední oddíl s názvem školy širší a vždy tak široký,
+   aby se do něj vešel celý název; název má vždy stejnou velikost písma jako
+   tlačítko pro přechod do druhé sekce (proměnná --stab-fs). */
+@media (min-width: 1025px) {
+  .sbar { --stab-fs: 21px; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .sbar > .stab:not(.on) { font-size: var(--stab-fs); }
+  .sbar > .brand { padding-left: 56px; padding-right: 56px; }
+  .sbar .brand-title, .sbar .brand-sub { font-size: var(--stab-fs); white-space: nowrap; }
+}
+@media (min-width: 1025px) {
+  .sbar > .brand { padding-left: clamp(24px, calc(4vw - 10px), 56px); padding-right: clamp(24px, calc(4vw - 10px), 56px); }
+  /* Tčko: název má teď pevnou velikost, účaří je vždy 19 px nad menu →
+     logo 14 px pod účařím, vrchol zářezu stužky 14 px pod logem. */
+  .nav-logo::after { top: -5.08px; }
+  .snav .main-nav > .nav-logo::before { height: calc(100.87px - 0.2575vw); }
+}
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .sbar > .stab { padding-left: 12px; padding-right: 12px; }
+}
+@media (min-width: 1980px) {
+  .nav-logo::after { top: -5.08px; }
+  .snav .main-nav > .nav-logo::before { height: 95.77px; }
+}
+/* Aktivní sekce jen o málo větší než odkaz na druhou sekci — rozdíl dělá
+   hlavně tloušťka písma (8. 10.). */
+@media (min-width: 1025px) {
+  .sbar > .stab.on { font-size: calc(var(--stab-fs) + 2px); }
+}
+@media (max-width: 1024px) {
+  .sbar > .stab.on { font-size: 17px; }
+}
+/* Aktivní sekce: velikost mezi původní (29 / 19 px) a zmenšenou (23 / 17 px). */
+@media (min-width: 1025px) {
+  .sbar > .stab.on { font-size: calc(var(--stab-fs) + 5px); }
+}
+@media (max-width: 1024px) {
+  .sbar > .stab.on { font-size: 18px; }
+}
